@@ -16,7 +16,7 @@ public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherSer
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{
-        HibernateConfig.class
+            HibernateConfig.class
         };//To change body of generated methods, choose Tools | Templates.
     }
 
@@ -31,6 +31,5 @@ public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherSer
     protected String[] getServletMappings() {
         return new String[]{"/"};
 //To change body of generated methods, choose Tools | Templates.
-
     }
 }

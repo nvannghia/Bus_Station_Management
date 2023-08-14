@@ -3,14 +3,17 @@ com\nvnht\pojo\UserDetail.class
 com\nvnht\configs\HibernateConfig.class
 com\nvnht\pojo\Location_.class
 com\nvnht\pojo\Trips.class
+com\nvnht\service\impl\BusCompaniesServiceImpl.class
 com\nvnht\pojo\Buscompanies_.class
 com\nvnht\pojo\Avatar.class
 com\nvnht\pojo\Shipmentdetails.class
 com\nvnht\pojo\Deliveries_.class
 com\nvnht\configs\WebAppContextConfig.class
 com\nvnht\pojo\Review_.class
+com\nvnht\repository\BusCompaniesRepository.class
 com\nvnht\pojo\Routes_.class
 com\nvnht\pojo\Ticket.class
+com\nvnht\service\BusCompaniesService.class
 com\nvnht\pojo\Review.class
 com\nvnht\pojo\Ticket_.class
 com\nvnht\controllers\IndexController.class
