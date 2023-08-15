@@ -30,5 +30,24 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository{
         Query q = s.createQuery("FROM Buscompanies");
         return q.getResultList();
     }
+
+    @Override
+    public Buscompanies getBusCompanyById(int id) {
+        Session s = this.F.getObject().getCurrentSession();
+        return s.get(Buscompanies.class, id);
+    }
+
+    @Override
+    public boolean update(int id) {
+        Session s = this.F.getObject().getCurrentSession();
+        Buscompanies b = this.getBusCompanyById(id);
+        int state = b.getActive();
+        if(state != 0)
+            b.setActive(Short.valueOf("0"));
+        else
+            b.setActive(Short.valueOf("1"));
+        s.update(b);
+        return true;
+    }
     
 }

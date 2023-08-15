@@ -24,5 +24,15 @@ public class BusCompaniesServiceImpl implements BusCompaniesService{
     public List<Buscompanies> getBusCompanies() {
         return this.busRepo.getBusCompanies();
     }
+
+    @Override
+    public Buscompanies getBusCompanyById(int id) {
+        return this.busRepo.getBusCompanyById(id);
+    }
+
+    @Override
+    public boolean update(int id) {
+        return this.busRepo.update(id);
+    }
     
 }

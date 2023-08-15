@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface BusCompaniesService {
     public List<Buscompanies> getBusCompanies();
+    Buscompanies getBusCompanyById(int id);
+     public boolean update(int id);
 }

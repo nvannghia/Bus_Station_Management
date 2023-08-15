@@ -13,11 +13,16 @@
         <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <style>
+            .min-width{
+                min-width: 120px;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Admin</a>
+                <a class="navbar-brand" href="<c:url value="/"/>">Admin Page</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -30,51 +35,59 @@
                 </div>
             </div>
         </nav>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Tên nhà xe</th>
-                    <th>Số điện thoại</th>                    
-                    <th>Giao nhận hàng</th>                    
-                    <th>Đang hoạt động</th>                    
-                    <th>Xử lí</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${companies}" var="c">
+        <section class="container">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td>${c.id}</td>
-                        <td>${c.name}</td>
-                        <td>${c.phoneNumber}</td>                   
-                        <td>
-                            <c:choose>
-                                <c:when test="${c.delivery != 0}">
-                                    Có 
-                                </c:when>
-                                <c:otherwise>
-                                    Không
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${c.active != 0}">
-                                    <p class="text-success"> Đang hoạt động </p>
-                                </c:when>
-                                <c:otherwise>
-                                   <p class="text-danger"> Ngừng hoạt động </p>
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                        <td>
-                            <a href="" class="btn btn-danger">Khóa</a>
-                            <button class="btn btn-success">Mở khóa</button>
-                        </td>
-
+                        <th>Id</th>
+                        <th>Tên nhà xe</th>
+                        <th>Số điện thoại</th>                    
+                        <th>Giao nhận hàng</th>                    
+                        <th>Đang hoạt động</th>                    
+                        <th>Xử lí</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <c:forEach items="${companies}" var="c">
+                        <tr>
+                            <td>${c.id}</td>
+                            <td>${c.name}</td>
+                            <td>${c.phoneNumber}</td>                   
+                            <td>
+                                <c:choose>
+                                    <c:when test="${c.delivery != 0}">
+                                        Có 
+                                    </c:when>
+                                    <c:otherwise>
+                                        Không
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${c.active != 0}">
+                                        <p class="text-success"> Đang hoạt động </p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="text-danger"> Ngừng hoạt động </p>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <c:url value="/update/${c.id}" var="action"/>
+                                <c:choose>
+                                    <c:when test="${c.active != 0}">
+                                        <a href="${action}" class="btn btn-danger min-width"}">Khóa</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="${action}" class="btn btn-success min-width">Mở Khóa</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </section>
     </body>
 </html>
