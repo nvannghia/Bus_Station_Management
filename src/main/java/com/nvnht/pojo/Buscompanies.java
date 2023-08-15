@@ -63,6 +63,11 @@ public class Buscompanies implements Serializable {
     @NotNull
     @Column(name = "active")
     private short active;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_user")
+    private int idUser;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Collection<Routes> routesCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
@@ -187,5 +192,13 @@ public class Buscompanies implements Serializable {
     public String toString() {
         return "com.nvnht.pojo.Buscompanies[ id=" + id + " ]";
     }
-    
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
 }

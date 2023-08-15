@@ -5,6 +5,7 @@
  */
 package com.nvnht.controllers;
 
+import com.nvnht.pojo.User;
 import com.nvnht.service.BusCompaniesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,4 +27,13 @@ public class AdminController {
         this.busService.update(id);
         return "redirect:/";
     }
+    
+    @GetMapping("/createBusCompanyAccount")
+    public String addBusCompany(Model model){
+        model.addAttribute("buscompany", new User());
+        return "register";
+    }
+    
+    
+    
 }

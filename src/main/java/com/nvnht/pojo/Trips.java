@@ -8,6 +8,7 @@ package com.nvnht.pojo;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -182,5 +183,4 @@ public class Trips implements Serializable {
     public String toString() {
         return "com.nvnht.pojo.Trips[ id=" + id + " ]";
     }
-    
 }

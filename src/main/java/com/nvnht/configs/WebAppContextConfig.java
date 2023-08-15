@@ -35,14 +35,14 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         configurer.enable();//To change body of generated methods, choose Tools | Templates.
     }
 
-    @Bean
-    public InternalResourceViewResolver internalResourceViewResolver() {
-        InternalResourceViewResolver r = new InternalResourceViewResolver();
-        r.setViewClass(JstlView.class);
-        r.setPrefix("/WEB-INF/pages/");
-        r.setSuffix(".jsp");
-        return r;
-
-    }
+//    @Bean
+//    public InternalResourceViewResolver internalResourceViewResolver() {
+//        InternalResourceViewResolver r = new InternalResourceViewResolver();
+//        r.setViewClass(JstlView.class);
+//        r.setPrefix("/WEB-INF/pages/");
+//        r.setSuffix(".jsp");
+//        return r;
+//
+//    }
 
 }

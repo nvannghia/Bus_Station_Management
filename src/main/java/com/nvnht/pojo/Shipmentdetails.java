@@ -7,6 +7,7 @@ package com.nvnht.pojo;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Shipmentdetails.findByEmail", query = "SELECT s FROM Shipmentdetails s WHERE s.email = :email"),
     @NamedQuery(name = "Shipmentdetails.findByPhoneNumber", query = "SELECT s FROM Shipmentdetails s WHERE s.phoneNumber = :phoneNumber")})
 public class Shipmentdetails implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
     @Id

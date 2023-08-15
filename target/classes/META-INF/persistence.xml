@@ -13,6 +13,46 @@
     <class>com.nvnht.pojo.Deliveries</class>
     <class>com.nvnht.pojo.Location</class>
     <class>com.nvnht.pojo.Avatar</class>
+    <class>testPJ.Buscompanies</class>
+    <class>testPJ.Location</class>
+    <class>testPJ.Routes</class>
+    <class>testPJ.Review</class>
+    <class>testPJ.Ticket</class>
+    <class>PJ.Trips</class>
+    <class>PJ.User</class>
+    <class>PJ.Review</class>
+    <class>PJ.Ticket</class>
+    <class>PJ.Deliveries</class>
+    <class>PJ.Buscompanies</class>
+    <class>PJ.Routes</class>
+    <class>PJ.Location</class>
+    <class>test.Shipmentdetails</class>
+    <class>test.Routes</class>
+    <class>test.Ticket</class>
+    <class>test.Review</class>
+    <class>test.Buscompanies</class>
+    <class>test.Deliveries</class>
+    <class>test.Trips</class>
+    <class>test.Location</class>
+    <class>test.User</class>
+    <class>com.nvnht.configs.Location</class>
+    <class>com.nvnht.configs.User</class>
+    <class>com.nvnht.configs.Shipmentdetails</class>
+    <class>com.nvnht.configs.Buscompanies</class>
+    <class>com.nvnht.configs.Review</class>
+    <class>com.nvnht.configs.Trips</class>
+    <class>com.nvnht.configs.Ticket</class>
+    <class>com.nvnht.configs.Deliveries</class>
+    <class>com.nvnht.configs.Routes</class>
+    <class>com.nvn.PJ.Buscompanies</class>
+    <class>com.nvn.PJ.Shipmentdetails</class>
+    <class>com.nvn.PJ.Ticket</class>
+    <class>com.nvn.PJ.Review</class>
+    <class>com.nvn.PJ.User</class>
+    <class>com.nvn.PJ.Trips</class>
+    <class>com.nvn.PJ.Location</class>
+    <class>com.nvn.PJ.Routes</class>
+    <class>com.nvn.PJ.Deliveries</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/qlbxk?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
