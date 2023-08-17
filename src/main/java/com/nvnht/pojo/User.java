@@ -6,7 +6,6 @@
 package com.nvnht.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -20,14 +19,16 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.validation.annotation.Validated;
 
 /**
  *
- * @author 84967
+ * @author nghia
  */
 @Entity
 @Table(name = "user")
@@ -45,26 +46,28 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
+    @Valid
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{user.username.notNull}")
+    @Size(min = 5, max = 45, message = "{user.username.lenErr}")
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{user.password.notNull}")
+    @Size(min = 5, max = 45,message = "{user.password.LenErr}")
     @Column(name = "password")
     private String password;
+    @Valid
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 12)
     @Column(name = "user_role")
     private String userRole;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Ticket> ticketCollection;
+    private Set<Ticket> ticketSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Review> reviewCollection;
+    private Set<Review> reviewSet;
+
     
     @Transient
     private String retypePassword;
@@ -115,21 +118,21 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Ticket> getTicketCollection() {
-        return ticketCollection;
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
     }
 
-    public void setTicketCollection(Collection<Ticket> ticketCollection) {
-        this.ticketCollection = ticketCollection;
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
     }
 
     @XmlTransient
-    public Collection<Review> getReviewCollection() {
-        return reviewCollection;
+    public Set<Review> getReviewSet() {
+        return reviewSet;
     }
 
-    public void setReviewCollection(Collection<Review> reviewCollection) {
-        this.reviewCollection = reviewCollection;
+    public void setReviewSet(Set<Review> reviewSet) {
+        this.reviewSet = reviewSet;
     }
 
     @Override
@@ -170,6 +173,5 @@ public class User implements Serializable {
     public void setRetypePassword(String retypePassword) {
         this.retypePassword = retypePassword;
     }
-
-
+    
 }

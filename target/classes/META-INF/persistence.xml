@@ -53,6 +53,17 @@
     <class>com.nvn.PJ.Location</class>
     <class>com.nvn.PJ.Routes</class>
     <class>com.nvn.PJ.Deliveries</class>
+    <class>com.nvn.pojo.Location</class>
+    <class>com.nvn.pojo.Avatar</class>
+    <class>com.nvn.pojo.Buscompanies</class>
+    <class>com.nvn.pojo.Deliveries</class>
+    <class>com.nvn.pojo.Shipmentdetails</class>
+    <class>com.nvn.pojo.User</class>
+    <class>com.nvn.pojo.Review</class>
+    <class>com.nvn.pojo.UserDetail</class>
+    <class>com.nvn.pojo.Ticket</class>
+    <class>com.nvn.pojo.Trips</class>
+    <class>com.nvn.pojo.Routes</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/qlbxk?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

@@ -45,7 +45,6 @@ public class HibernateConfig {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
-
     }
 
     /**

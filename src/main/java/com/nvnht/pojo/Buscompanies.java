@@ -6,7 +6,7 @@
 package com.nvnht.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 84967
+ * @author nghia
  */
 @Entity
 @Table(name = "buscompanies")
@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Buscompanies.findByName", query = "SELECT b FROM Buscompanies b WHERE b.name = :name"),
     @NamedQuery(name = "Buscompanies.findByPhoneNumber", query = "SELECT b FROM Buscompanies b WHERE b.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "Buscompanies.findByDelivery", query = "SELECT b FROM Buscompanies b WHERE b.delivery = :delivery"),
-    @NamedQuery(name = "Buscompanies.findByActive", query = "SELECT b FROM Buscompanies b WHERE b.active = :active")})
+    @NamedQuery(name = "Buscompanies.findByActive", query = "SELECT b FROM Buscompanies b WHERE b.active = :active"),
+    @NamedQuery(name = "Buscompanies.findByIdUser", query = "SELECT b FROM Buscompanies b WHERE b.idUser = :idUser")})
 public class Buscompanies implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,14 +46,14 @@ public class Buscompanies implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Basic(optional = false) 
+    @NotNull(message = "{buscompany.name.notNull}")
+    @Size(min = 1, max = 45, message = "{buscompany.name.lenErr}")
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{buscompany.phoneNumber.notNull}")
+    @Size(min = 10, max = 20, message = "{buscompany.phoneNumber.lenErr}")
     @Column(name = "phone_number")
     private String phoneNumber;
     @Basic(optional = false)
@@ -67,15 +68,14 @@ public class Buscompanies implements Serializable {
     @NotNull
     @Column(name = "id_user")
     private int idUser;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
-    private Collection<Routes> routesCollection;
+    private Set<Routes> routesSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
-    private Collection<Ticket> ticketCollection;
+    private Set<Ticket> ticketSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
-    private Collection<Review> reviewCollection;
+    private Set<Review> reviewSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
-    private Collection<Location> locationCollection;
+    private Set<Location> locationSet;
 
     public Buscompanies() {
     }
@@ -84,12 +84,13 @@ public class Buscompanies implements Serializable {
         this.id = id;
     }
 
-    public Buscompanies(Integer id, String name, String phoneNumber, short delivery, short active) {
+    public Buscompanies(Integer id, String name, String phoneNumber, short delivery, short active, int idUser) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.delivery = delivery;
         this.active = active;
+        this.idUser = idUser;
     }
 
     public Integer getId() {
@@ -132,40 +133,48 @@ public class Buscompanies implements Serializable {
         this.active = active;
     }
 
-    @XmlTransient
-    public Collection<Routes> getRoutesCollection() {
-        return routesCollection;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setRoutesCollection(Collection<Routes> routesCollection) {
-        this.routesCollection = routesCollection;
-    }
-
-    @XmlTransient
-    public Collection<Ticket> getTicketCollection() {
-        return ticketCollection;
-    }
-
-    public void setTicketCollection(Collection<Ticket> ticketCollection) {
-        this.ticketCollection = ticketCollection;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     @XmlTransient
-    public Collection<Review> getReviewCollection() {
-        return reviewCollection;
+    public Set<Routes> getRoutesSet() {
+        return routesSet;
     }
 
-    public void setReviewCollection(Collection<Review> reviewCollection) {
-        this.reviewCollection = reviewCollection;
+    public void setRoutesSet(Set<Routes> routesSet) {
+        this.routesSet = routesSet;
     }
 
     @XmlTransient
-    public Collection<Location> getLocationCollection() {
-        return locationCollection;
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
     }
 
-    public void setLocationCollection(Collection<Location> locationCollection) {
-        this.locationCollection = locationCollection;
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
+    }
+
+    @XmlTransient
+    public Set<Review> getReviewSet() {
+        return reviewSet;
+    }
+
+    public void setReviewSet(Set<Review> reviewSet) {
+        this.reviewSet = reviewSet;
+    }
+
+    @XmlTransient
+    public Set<Location> getLocationSet() {
+        return locationSet;
+    }
+
+    public void setLocationSet(Set<Location> locationSet) {
+        this.locationSet = locationSet;
     }
 
     @Override
@@ -192,13 +201,5 @@ public class Buscompanies implements Serializable {
     public String toString() {
         return "com.nvnht.pojo.Buscompanies[ id=" + id + " ]";
     }
-
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
+    
 }

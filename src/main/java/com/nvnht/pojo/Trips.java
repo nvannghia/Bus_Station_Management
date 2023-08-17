@@ -6,7 +6,6 @@
 package com.nvnht.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -31,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 84967
+ * @author nghia
  */
 @Entity
 @Table(name = "trips")
@@ -71,12 +70,12 @@ public class Trips implements Serializable {
     @Column(name = "seat_number")
     private int seatNumber;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
-    private Collection<Ticket> ticketCollection;
+    private Set<Ticket> ticketSet;
     @JoinColumn(name = "routes_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Routes routesId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
-    private Collection<Deliveries> deliveriesCollection;
+    private Set<Deliveries> deliveriesSet;
 
     public Trips() {
     }
@@ -134,12 +133,12 @@ public class Trips implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Ticket> getTicketCollection() {
-        return ticketCollection;
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
     }
 
-    public void setTicketCollection(Collection<Ticket> ticketCollection) {
-        this.ticketCollection = ticketCollection;
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
     }
 
     public Routes getRoutesId() {
@@ -151,12 +150,12 @@ public class Trips implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Deliveries> getDeliveriesCollection() {
-        return deliveriesCollection;
+    public Set<Deliveries> getDeliveriesSet() {
+        return deliveriesSet;
     }
 
-    public void setDeliveriesCollection(Collection<Deliveries> deliveriesCollection) {
-        this.deliveriesCollection = deliveriesCollection;
+    public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
+        this.deliveriesSet = deliveriesSet;
     }
 
     @Override
@@ -183,4 +182,5 @@ public class Trips implements Serializable {
     public String toString() {
         return "com.nvnht.pojo.Trips[ id=" + id + " ]";
     }
+    
 }

@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <section id="register" class="vh-100" style="background-color: #F1F1F1;">
     <div class="container h-100">
@@ -18,15 +18,19 @@
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Đăng ký tài khoản nhà xe</p>
+                                
                                 <c:url value="/createBusCompanyAccount" var="{action}" />
                                 <form class="mx-1 mx-md-4" method="post" action="${action}">
+                                    ${error}
+
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="user.username" >
-                                            <input type="text"  id="username" name="username" class="form-control" />
+                                                <input type="text"  id="username" name="username" class="form-control" />
                                             </spring:bind>
                                             <label class="form-label" for="username">Tên đăng nhập</label>
+                                            <form:errors path="user.username" element="div" cssClass="text-danger" />
                                         </div>
                                     </div>
 
@@ -34,16 +38,17 @@
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="user.password" >
-                                            <input type="password" id="password" name="password" class="form-control" />
+                                                <input type="password" id="password" name="password" class="form-control" />
                                             </spring:bind>
                                             <label class="form-label" for="password">Mật khẩu</label>
+                                            <form:errors path="user.password" element="div" cssClass="text-danger" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="user.retypePassword" >
-                                            <input type="password" id="retypePassword" name="retypePassword" class="form-control" />
+                                                <input type="password" id="retypePassword" name="retypePassword" class="form-control" />
                                             </spring:bind>
                                             <label class="form-label" for="retypePassword">Xác nhận mật khẩu</label>
                                         </div>
@@ -55,24 +60,26 @@
                                             <label class="form-label" for="authentication">Phân quyền</label>
                                         </div>
                                     </div>
-                                     <hr/>
+                                    <hr/>
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Đăng ký thông tin nhà xe</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-bus fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="buscompany.name" >
-                                            <input type="text"  id="buscompanyName" name="name" class="form-control" />
+                                                <input type="text"  id="buscompanyName" name="name" class="form-control" />
                                             </spring:bind>
                                             <label class="form-label" for="buscompanyName">Tên nhà xe</label>
+                                            <form:errors path="buscompany.name" element="div" cssClass="text-danger" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-phone fa-bus fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="buscompany.phoneNumber" >
-                                            <input type="text"  id="phoneNumber" name="phoneNumber" class="form-control" />
+                                                <input type="text"  id="phoneNumber" name="phoneNumber" class="form-control" />
                                             </spring:bind>
                                             <label class="form-label" for="phoneNumber">Số điện thoại</label>
+                                            <form:errors path="buscompany.phoneNumber" element="div" cssClass="text-danger" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -80,9 +87,9 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="buscompany.delivery" >
                                                 <select class="form-select" name="delivery">                                     
-                                                <option value="1" selected>Có</option>
-                                                <option value="0">Không</option>
-                                            </select>
+                                                    <option value="1" selected>Có</option>
+                                                    <option value="0">Không</option>
+                                                </select>
                                             </spring:bind>
                                             <label class="form-label" for="delivery">Giao hàng</label>
                                         </div>
@@ -91,7 +98,7 @@
                                         <i class="fas fa-solid fa-question fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="buscompany.active" >
-                                            <input type="text"  id="active" name="active" class="form-control" value="Đang hoạt động" disabled />
+                                                <input type="text"  id="active" name="active" class="form-control" value="Đang hoạt động" disabled />
                                             </spring:bind>
                                             <label class="form-label" for="active">Tình trạng</label>
                                         </div>
@@ -108,6 +115,7 @@
                                     </div>
 
                                 </form>
+
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 

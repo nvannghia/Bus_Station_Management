@@ -23,7 +23,7 @@
             <c:forEach items="${companies}" var="c">
                 <tr>
                     <td>${c.id}</td>
-                    <td>${c.name}</td>
+                    <td>Nhà xe ${c.name}</td>
                     <td>${c.phoneNumber}</td>                   
                     <td>
                         <c:choose>

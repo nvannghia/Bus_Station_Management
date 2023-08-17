@@ -3,19 +3,19 @@ package com.nvnht.pojo;
 import com.nvnht.pojo.Review;
 import com.nvnht.pojo.Ticket;
 import javax.annotation.Generated;
-import javax.persistence.metamodel.CollectionAttribute;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-08-16T22:56:51")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-08-17T17:41:16")
 @StaticMetamodel(User.class)
 public class User_ { 
 
     public static volatile SingularAttribute<User, String> password;
-    public static volatile CollectionAttribute<User, Ticket> ticketCollection;
+    public static volatile SetAttribute<User, Ticket> ticketSet;
+    public static volatile SetAttribute<User, Review> reviewSet;
     public static volatile SingularAttribute<User, Integer> id;
     public static volatile SingularAttribute<User, String> userRole;
-    public static volatile CollectionAttribute<User, Review> reviewCollection;
     public static volatile SingularAttribute<User, String> username;
 
 }

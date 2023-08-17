@@ -6,7 +6,6 @@
 package com.nvnht.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 84967
+ * @author nghia
  */
 @Entity
 @Table(name = "shipmentdetails")
@@ -39,7 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Shipmentdetails.findByEmail", query = "SELECT s FROM Shipmentdetails s WHERE s.email = :email"),
     @NamedQuery(name = "Shipmentdetails.findByPhoneNumber", query = "SELECT s FROM Shipmentdetails s WHERE s.phoneNumber = :phoneNumber")})
 public class Shipmentdetails implements Serializable {
-
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -70,9 +68,9 @@ public class Shipmentdetails implements Serializable {
     @Column(name = "address")
     private String address;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiverId")
-    private Collection<Deliveries> deliveriesCollection;
+    private Set<Deliveries> deliveriesSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "senderId")
-    private Collection<Deliveries> deliveriesCollection1;
+    private Set<Deliveries> deliveriesSet1;
 
     public Shipmentdetails() {
     }
@@ -130,21 +128,21 @@ public class Shipmentdetails implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Deliveries> getDeliveriesCollection() {
-        return deliveriesCollection;
+    public Set<Deliveries> getDeliveriesSet() {
+        return deliveriesSet;
     }
 
-    public void setDeliveriesCollection(Collection<Deliveries> deliveriesCollection) {
-        this.deliveriesCollection = deliveriesCollection;
+    public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
+        this.deliveriesSet = deliveriesSet;
     }
 
     @XmlTransient
-    public Collection<Deliveries> getDeliveriesCollection1() {
-        return deliveriesCollection1;
+    public Set<Deliveries> getDeliveriesSet1() {
+        return deliveriesSet1;
     }
 
-    public void setDeliveriesCollection1(Collection<Deliveries> deliveriesCollection1) {
-        this.deliveriesCollection1 = deliveriesCollection1;
+    public void setDeliveriesSet1(Set<Deliveries> deliveriesSet1) {
+        this.deliveriesSet1 = deliveriesSet1;
     }
 
     @Override

@@ -6,7 +6,7 @@
 package com.nvnht.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 84967
+ * @author nghia
  */
 @Entity
 @Table(name = "location")
@@ -62,9 +62,9 @@ public class Location implements Serializable {
     @Column(name = "street_name")
     private String streetName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "departureId")
-    private Collection<Routes> routesCollection;
+    private Set<Routes> routesSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "destinationId")
-    private Collection<Routes> routesCollection1;
+    private Set<Routes> routesSet1;
     @JoinColumn(name = "buscompanies_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Buscompanies buscompaniesId;
@@ -116,21 +116,21 @@ public class Location implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Routes> getRoutesCollection() {
-        return routesCollection;
+    public Set<Routes> getRoutesSet() {
+        return routesSet;
     }
 
-    public void setRoutesCollection(Collection<Routes> routesCollection) {
-        this.routesCollection = routesCollection;
+    public void setRoutesSet(Set<Routes> routesSet) {
+        this.routesSet = routesSet;
     }
 
     @XmlTransient
-    public Collection<Routes> getRoutesCollection1() {
-        return routesCollection1;
+    public Set<Routes> getRoutesSet1() {
+        return routesSet1;
     }
 
-    public void setRoutesCollection1(Collection<Routes> routesCollection1) {
-        this.routesCollection1 = routesCollection1;
+    public void setRoutesSet1(Set<Routes> routesSet1) {
+        this.routesSet1 = routesSet1;
     }
 
     public Buscompanies getBuscompaniesId() {

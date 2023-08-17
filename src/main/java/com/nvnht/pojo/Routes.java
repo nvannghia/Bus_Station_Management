@@ -6,7 +6,7 @@
 package com.nvnht.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 84967
+ * @author nghia
  */
 @Entity
 @Table(name = "routes")
@@ -57,7 +57,7 @@ public class Routes implements Serializable {
     @ManyToOne(optional = false)
     private Location destinationId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routesId")
-    private Collection<Trips> tripsCollection;
+    private Set<Trips> tripsSet;
 
     public Routes() {
     }
@@ -112,12 +112,12 @@ public class Routes implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Trips> getTripsCollection() {
-        return tripsCollection;
+    public Set<Trips> getTripsSet() {
+        return tripsSet;
     }
 
-    public void setTripsCollection(Collection<Trips> tripsCollection) {
-        this.tripsCollection = tripsCollection;
+    public void setTripsSet(Set<Trips> tripsSet) {
+        this.tripsSet = tripsSet;
     }
 
     @Override
