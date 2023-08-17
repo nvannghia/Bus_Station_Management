@@ -6,9 +6,11 @@
 package com.nvnht.repository.impl;
 
 import com.nvnht.pojo.Buscompanies;
+import com.nvnht.pojo.User;
 import com.nvnht.repository.BusCompaniesRepository;
 import java.util.List;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -21,9 +23,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class BusCompaniesRepositoryImpl implements BusCompaniesRepository{
+public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
+
     @Autowired
     private LocalSessionFactoryBean F;
+
     @Override
     public List<Buscompanies> getBusCompanies() {
         Session s = this.F.getObject().getCurrentSession();
@@ -42,12 +46,37 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository{
         Session s = this.F.getObject().getCurrentSession();
         Buscompanies b = this.getBusCompanyById(id);
         int state = b.getActive();
-        if(state != 0)
-            b.setActive(Short.valueOf("0"));
-        else
-            b.setActive(Short.valueOf("1"));
-        s.update(b);
-        return true;
+        try {
+            if (state != 0) {
+                b.setActive(Short.valueOf("0"));
+            } else {
+                b.setActive(Short.valueOf("1"));
+            }
+            s.update(b);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
-    
+
+    @Override
+    public boolean addBusCompany(User u, Buscompanies b) {
+        Session s = this.F.getObject().getCurrentSession();
+        try {
+            if (u.getId() == null && b.getId() == null ) {
+                u.setUserRole("buscompanies");
+                int id = (Integer) s.save(u);
+                b.setActive(Short.valueOf("1"));
+                b.setIdUser(id);
+                s.save(b);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

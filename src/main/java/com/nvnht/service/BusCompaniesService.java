@@ -6,6 +6,7 @@
 package com.nvnht.service;
 
 import com.nvnht.pojo.Buscompanies;
+import com.nvnht.pojo.User;
 import java.util.List;
 
 /**
@@ -13,7 +14,8 @@ import java.util.List;
  * @author nghia
  */
 public interface BusCompaniesService {
-    public List<Buscompanies> getBusCompanies();
+    List<Buscompanies> getBusCompanies();
     Buscompanies getBusCompanyById(int id);
-     public boolean update(int id);
+    boolean update(int id);
+    boolean addBusCompany(User u, Buscompanies b);
 }

@@ -6,6 +6,7 @@
 package com.nvnht.service.impl;
 
 import com.nvnht.pojo.Buscompanies;
+import com.nvnht.pojo.User;
 import com.nvnht.repository.BusCompaniesRepository;
 import com.nvnht.service.BusCompaniesService;
 import java.util.List;
@@ -33,6 +34,11 @@ public class BusCompaniesServiceImpl implements BusCompaniesService{
     @Override
     public boolean update(int id) {
         return this.busRepo.update(id);
+    }
+
+    @Override
+    public boolean addBusCompany(User u, Buscompanies b) {
+        return this.busRepo.addBusCompany(u,b);
     }
     
 }

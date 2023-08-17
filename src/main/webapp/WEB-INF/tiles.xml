@@ -22,4 +22,9 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/pages/register.jsp" />
     </definition>
+    <definition name="error" extends="baseLayout">
+        <put-attribute name="title" value="Lỗi" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/error.jsp" />
+    </definition>
 </tiles-definitions>

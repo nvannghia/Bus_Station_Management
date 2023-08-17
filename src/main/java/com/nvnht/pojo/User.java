@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -64,7 +65,9 @@ public class User implements Serializable {
     private Collection<Ticket> ticketCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Review> reviewCollection;
-
+    
+    @Transient
+    private String retypePassword;
     public User() {
     }
 
@@ -152,6 +155,20 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.nvnht.pojo.User[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the retypePassword
+     */
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    /**
+     * @param retypePassword the retypePassword to set
+     */
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
     }
 
 
