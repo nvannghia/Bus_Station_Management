@@ -63,7 +63,7 @@ public class User implements Serializable {
     private String password;
     @Valid
     @Basic(optional = false)
-    @Size(min = 1, max = 12)
+    @Size(min = 1, max = 20)
     @Column(name = "user_role")
     private String userRole;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")

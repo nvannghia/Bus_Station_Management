@@ -5,14 +5,18 @@
  */
 package com.nvnht.repository.impl;
 
-
 import com.nvnht.pojo.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import com.nvnht.repository.UserRepository;
+import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -21,18 +25,30 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserRepositoryImpl implements UserRepository{
+public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
 
     @Override
-    public User getUserByUsername(String username) {
-        Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("From User Where username=:un");
-        q.setParameter("un", username);
-        
-        return (User) q.getSingleResult();
+    public boolean addUser(User user) {
+        return false;
     }
-    
+
+    @Override
+    public List<User> getUsers(String username) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root root = query.from(User.class);
+        query = query.select(root);
+        
+        if(!username.isEmpty()){
+            Predicate p = builder.equal(root.get("username").as(String.class), username.trim());
+            query = query.where(p);
+        }
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
+
 }

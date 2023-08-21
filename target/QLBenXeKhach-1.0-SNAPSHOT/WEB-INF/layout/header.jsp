@@ -28,10 +28,16 @@
                 </c:if>
                 <c:if  test="${pageContext.request.userPrincipal.name != null}">
                     <li class="nav-item">
-                        <a class="nav-link text-info" href="<c:url value="/"/>">
+                        <a class="nav-link text-info logged" href="<c:url value="/"/>">
                             ${pageContext.request.userPrincipal.name}
                         </a>
                     </li>
+                    <li class="nav-item  state">
+                        <a class="nav-link text-danger logout" href="<c:url value="/logout"/>">
+                            Đăng xuất
+                        </a>
+                    </li>
+
                 </c:if>
             </ul>
         </div>

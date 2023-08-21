@@ -18,7 +18,7 @@
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Đăng ký tài khoản nhà xe</p>
-                                
+
                                 <c:url value="/createBusCompanyAccount" var="{action}" />
                                 <form class="mx-1 mx-md-4" method="post" action="${action}">
                                     ${error}
@@ -31,6 +31,11 @@
                                             </spring:bind>
                                             <label class="form-label" for="username">Tên đăng nhập</label>
                                             <form:errors path="user.username" element="div" cssClass="text-danger" />
+                                            <c:if test="${msgErr != null}">
+                                                <div class="text-danger" >
+                                                    Tên đăng nhập đã tồn tại!
+                                                </div>
+                                            </c:if>
                                         </div>
                                     </div>
 

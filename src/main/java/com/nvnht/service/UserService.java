@@ -5,14 +5,17 @@
  */
 package com.nvnht.service;
 
-
+import com.nvnht.pojo.User;
+import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author nghia
  */
+public interface UserService extends UserDetailsService {
 
-public interface UserService extends UserDetailsService{
-    
+    boolean addUser(User user);
+
+    List<User> getUsers(String username);
 }
