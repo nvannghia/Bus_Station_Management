@@ -21,6 +21,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Xác nhận nhà xe</a>
                 </li>
+                <c:if  test="${pageContext.request.userPrincipal.name == null}">
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="<c:url value="/login"/>">Đăng nhập</a>
+                    </li>
+                </c:if>
+                <c:if  test="${pageContext.request.userPrincipal.name != null}">
+                    <li class="nav-item">
+                        <a class="nav-link text-info" href="<c:url value="/"/>">
+                            ${pageContext.request.userPrincipal.name}
+                        </a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </div>

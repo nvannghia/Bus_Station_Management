@@ -24,7 +24,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.validation.annotation.Validated;
 
 /**
  *
@@ -41,6 +40,10 @@ import org.springframework.validation.annotation.Validated;
     @NamedQuery(name = "User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole = :userRole")})
 public class User implements Serializable {
 
+    public static final String ADMIN = "admin";
+    public static final String CUSTOMER = "customer";
+    public static final String BUSCOMPANY = "buscompanies";
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +58,7 @@ public class User implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull(message = "{user.password.notNull}")
-    @Size(min = 5, max = 45,message = "{user.password.LenErr}")
+    @Size(min = 5, max = 100, message = "{user.password.LenErr}")
     @Column(name = "password")
     private String password;
     @Valid
@@ -68,9 +71,10 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Review> reviewSet;
 
-    
+    @NotNull(message = "{user.password.notMatch}")
     @Transient
     private String retypePassword;
+
     public User() {
     }
 
@@ -99,14 +103,6 @@ public class User implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getUserRole() {
@@ -160,6 +156,15 @@ public class User implements Serializable {
         return "com.nvnht.pojo.User[ id=" + id + " ]";
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+        checkPassword();
+    }
+
     /**
      * @return the retypePassword
      */
@@ -172,6 +177,14 @@ public class User implements Serializable {
      */
     public void setRetypePassword(String retypePassword) {
         this.retypePassword = retypePassword;
+        checkPassword();
     }
-    
+
+    private void checkPassword() {
+        if (this.password == null || this.retypePassword == null) {
+            return;
+        } else if (!this.password.equals(retypePassword)) {
+            this.retypePassword = null;
+        }
+    }
 }

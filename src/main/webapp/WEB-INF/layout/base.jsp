@@ -21,9 +21,10 @@
                 min-width: 120px;
             }
         
-            section#register{
+/*            section#register{
                 overflow: scroll;
-            }
+                scroll
+            }*/
         </style>
     </head>
     <body>

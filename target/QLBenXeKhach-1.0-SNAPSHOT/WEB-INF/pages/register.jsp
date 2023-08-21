@@ -8,7 +8,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
-<section id="register" class="vh-100" style="background-color: #F1F1F1;">
+<section id="register" class="vh-100 overflow-auto" style="background-color: #F1F1F1;">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -51,6 +51,7 @@
                                                 <input type="password" id="retypePassword" name="retypePassword" class="form-control" />
                                             </spring:bind>
                                             <label class="form-label" for="retypePassword">Xác nhận mật khẩu</label>
+                                            <form:errors path="user.retypePassword" element="div" cssClass="text-danger" />
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">

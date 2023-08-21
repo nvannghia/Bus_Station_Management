@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -54,6 +55,7 @@ public class Buscompanies implements Serializable {
     @Basic(optional = false)
     @NotNull(message = "{buscompany.phoneNumber.notNull}")
     @Size(min = 10, max = 20, message = "{buscompany.phoneNumber.lenErr}")
+    @Pattern(regexp = "^[0-9]*$", message = "{buscompany.phoneNumber.onlyNumber}")
     @Column(name = "phone_number")
     private String phoneNumber;
     @Basic(optional = false)
