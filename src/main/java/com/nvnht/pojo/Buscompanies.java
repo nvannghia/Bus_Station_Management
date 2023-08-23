@@ -5,6 +5,7 @@
  */
 package com.nvnht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -47,7 +48,7 @@ public class Buscompanies implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false) 
+    @Basic(optional = false)
     @NotNull(message = "{buscompany.name.notNull}")
     @Size(min = 1, max = 45, message = "{buscompany.name.lenErr}")
     @Column(name = "name")
@@ -70,12 +71,16 @@ public class Buscompanies implements Serializable {
     @NotNull
     @Column(name = "id_user")
     private int idUser;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Routes> routesSet;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Ticket> ticketSet;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Review> reviewSet;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Location> locationSet;
 
@@ -203,5 +208,5 @@ public class Buscompanies implements Serializable {
     public String toString() {
         return "com.nvnht.pojo.Buscompanies[ id=" + id + " ]";
     }
-    
+
 }

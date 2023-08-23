@@ -61,10 +61,10 @@ public class Location implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "street_name")
     private String streetName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departureId")
-    private Set<Routes> routesSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "destinationId")
-    private Set<Routes> routesSet1;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departureId")
+//    private Set<Routes> routesSet;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "destinationId")
+//    private Set<Routes> routesSet1;
     @JoinColumn(name = "buscompanies_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Buscompanies buscompaniesId;
@@ -115,23 +115,23 @@ public class Location implements Serializable {
         this.streetName = streetName;
     }
 
-    @XmlTransient
-    public Set<Routes> getRoutesSet() {
-        return routesSet;
-    }
+//    @XmlTransient
+//    public Set<Routes> getRoutesSet() {
+//        return routesSet;
+//    }
 
-    public void setRoutesSet(Set<Routes> routesSet) {
-        this.routesSet = routesSet;
-    }
-
-    @XmlTransient
-    public Set<Routes> getRoutesSet1() {
-        return routesSet1;
-    }
-
-    public void setRoutesSet1(Set<Routes> routesSet1) {
-        this.routesSet1 = routesSet1;
-    }
+//    public void setRoutesSet(Set<Routes> routesSet) {
+//        this.routesSet = routesSet;
+//    }
+//
+//    @XmlTransient
+//    public Set<Routes> getRoutesSet1() {
+//        return routesSet1;
+//    }
+//
+//    public void setRoutesSet1(Set<Routes> routesSet1) {
+//        this.routesSet1 = routesSet1;
+//    }
 
     public Buscompanies getBuscompaniesId() {
         return buscompaniesId;

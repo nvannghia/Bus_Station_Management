@@ -1,0 +1,2 @@
+CÁC LOGIC :
+1. khi gọi api của Location, phải gọi thêm api của BusCompanies để lấy id Buscompanies để CRUD.

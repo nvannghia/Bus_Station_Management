@@ -71,7 +71,7 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
             if (u.getId() == null && b.getId() == null) {
                 String pwd = passwordEncoder.encode(u.getPassword());// hash password
                 u.setPassword(pwd);
-                u.setRetypePassword(pwd); // setRetypePassword() để so sánh ở class User Pojo
+                u.setRetypePassword(pwd); // setRetypePassword() để so sánh với password() ở class User Pojo
                 u.setUserRole("ROLE_BUSCOMPANY");
                 int id = (Integer) s.save(u);
                 if (id != -1) {

@@ -8,6 +8,7 @@ package com.nvnht.controllers;
 
 import com.nvnht.service.BusCompaniesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,8 @@ public class IndexController {
     @Autowired
     private BusCompaniesService busServ;
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model,Authentication authentication){
+        model.addAttribute("buscompanies",this.busServ.getBusCompanies());
         model.addAttribute("companies",this.busServ.getBusCompanies());
         return "index";
     }           

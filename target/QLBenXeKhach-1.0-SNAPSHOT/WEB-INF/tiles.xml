@@ -32,4 +32,9 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/pages/login.jsp" />
     </definition>
+    <definition name="locationregister" extends="baseLayout">
+        <put-attribute name="title" value="addLocation" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/locationregister.jsp" />
+    </definition>
 </tiles-definitions>
