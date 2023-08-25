@@ -1,2 +1,16 @@
 CÁC LOGIC :
-1. khi gọi api của Location, phải gọi thêm api của BusCompanies để lấy id Buscompanies để CRUD.
+------LOCATION:
+1. 
+ +khi gọi api của Location, phải gọi thêm api của BusCompanies để lấy id Buscompanies để CRUD.
+ + buscompanies_id : lúc user là nhà xe đăng nhập thì lấy id user rồi qua bảng nhà xe
+lấy nhà xe nào có id user = id user đang đăng nhập vào hệ thống.
+
+
+------ROUTE:
+1.
+ +id tự tăng
+ + fare cho nhập textbox
+ + departure_id và destination_id gọi api của location và sổ selectbox cho nhà xe chọn
+ + buscompanies_id : lúc user là nhà xe đăng nhập thì lấy id user rồi qua bảng nhà xe
+lấy nhà xe nào có id user = id user đang đăng nhập vào hệ thống. (BẮT BUỘC PHẢI lấy được id của nhà xe để
+ lấy đc các location của nhà xe rồi cho vào select box các location dựa trên id nhà xe để tạo tuyến)

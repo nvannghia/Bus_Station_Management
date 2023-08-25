@@ -5,6 +5,7 @@
  */
 package com.nvnht.configs;
 
+import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -67,6 +68,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/buscompanies").permitAll();
 //                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
         http.csrf().disable();
+    }
+    
+    
+    @Bean
+    public SimpleDateFormat simpleDateFormat(){
+        return new SimpleDateFormat("yyyy-MM--dd");
     }
 
 }

@@ -54,30 +54,24 @@ public class ApiLocationController {
 //        return "error";
 //    }
     //////////------------ C R U D----------------------
+    //CREATE
+    @PostMapping("/location/add")
+    public ResponseEntity<Location> addLocation(@RequestBody Location l) {
+        if (this.locationServ.addLocation(l) == true) {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+    }
+
     //READ
     @GetMapping("/location/")
     @CrossOrigin
     public ResponseEntity<List<Location>> list() {
-        return new ResponseEntity<>(this.locationServ.getLocationes(), HttpStatus.OK);
-    }
-
-    //CREATE
-    @PostMapping("/location/add")
-    public ResponseEntity<Location> addLaction(@RequestBody Location l) {
-        if (this.locationServ.addLocation(l) == true) {
-            return new ResponseEntity<>(l, HttpStatus.OK);
+        List<Location> locationes = this.locationServ.getLocationes();
+        if (locationes.isEmpty()) {
+            return new ResponseEntity<List<Location>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(l, HttpStatus.EXPECTATION_FAILED);
-    }
-
-    //DELETE
-    @DeleteMapping("/location/delete/{id}")
-    public ResponseEntity<Location> deleteLocation(@PathVariable("id") int id) {
-        if (this.locationServ.getLocationById(id) == null) {
-            return new ResponseEntity<Location>(HttpStatus.NOT_FOUND);
-        }
-        this.locationServ.deleteLocation(id);
-        return new ResponseEntity<Location>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<List<Location>>(locationes, HttpStatus.OK);
     }
 
     //UPDATE
@@ -94,6 +88,16 @@ public class ApiLocationController {
         currentLocation.setStreetName(l.getStreetName());
         this.locationServ.updateLocation(currentLocation);
         return new ResponseEntity<Location>(currentLocation, HttpStatus.OK);
-
     }
+
+    //DELETE
+    @DeleteMapping("/location/delete/{id}")
+    public ResponseEntity<Location> deleteLocation(@PathVariable("id") int id) {
+        if (this.locationServ.getLocationById(id) == null) {
+            return new ResponseEntity<Location>(HttpStatus.NOT_FOUND);
+        }
+        this.locationServ.deleteLocation(id);
+        return new ResponseEntity<Location>(HttpStatus.NO_CONTENT);
+    }
+
 }

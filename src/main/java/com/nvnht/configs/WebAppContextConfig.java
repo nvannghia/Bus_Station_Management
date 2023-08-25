@@ -6,6 +6,8 @@
 package com.nvnht.configs;
 
 import com.nvnht.formatter.BuscompaniesFormatter;
+import com.nvnht.formatter.LocationFormatter;
+import com.nvnht.formatter.RoutesFormatter;
 import com.nvnht.pojo.Buscompanies;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +57,8 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new BuscompaniesFormatter());
+        registry.addFormatter(new LocationFormatter());
+        registry.addFormatter(new RoutesFormatter());
     }
     
     

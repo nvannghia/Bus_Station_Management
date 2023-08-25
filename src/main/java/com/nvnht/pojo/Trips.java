@@ -69,13 +69,13 @@ public class Trips implements Serializable {
     @NotNull
     @Column(name = "seat_number")
     private int seatNumber;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
-    private Set<Ticket> ticketSet;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
+//    private Set<Ticket> ticketSet;
     @JoinColumn(name = "routes_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Routes routesId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
-    private Set<Deliveries> deliveriesSet;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
+//    private Set<Deliveries> deliveriesSet;
 
     public Trips() {
     }
@@ -132,14 +132,14 @@ public class Trips implements Serializable {
         this.seatNumber = seatNumber;
     }
 
-    @XmlTransient
-    public Set<Ticket> getTicketSet() {
-        return ticketSet;
-    }
-
-    public void setTicketSet(Set<Ticket> ticketSet) {
-        this.ticketSet = ticketSet;
-    }
+//    @XmlTransient
+//    public Set<Ticket> getTicketSet() {
+//        return ticketSet;
+//    }
+//
+//    public void setTicketSet(Set<Ticket> ticketSet) {
+//        this.ticketSet = ticketSet;
+//    }
 
     public Routes getRoutesId() {
         return routesId;
@@ -149,14 +149,14 @@ public class Trips implements Serializable {
         this.routesId = routesId;
     }
 
-    @XmlTransient
-    public Set<Deliveries> getDeliveriesSet() {
-        return deliveriesSet;
-    }
-
-    public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
-        this.deliveriesSet = deliveriesSet;
-    }
+//    @XmlTransient
+//    public Set<Deliveries> getDeliveriesSet() {
+//        return deliveriesSet;
+//    }
+//
+//    public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
+//        this.deliveriesSet = deliveriesSet;
+//    }
 
     @Override
     public int hashCode() {
