@@ -37,4 +37,24 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/pages/locationregister.jsp" />
     </definition>
+    <definition name="addlocation" extends="baseLayout">
+        <put-attribute name="title" value="Thêm địa chỉ nhà xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/addlocation.jsp" />
+    </definition>
+    <definition name="locationlist" extends="baseLayout">
+        <put-attribute name="title" value="Địa chỉ nhà xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/locationlist.jsp" />
+    </definition>
+    <definition name="locationupdate" extends="baseLayout">
+        <put-attribute name="title" value="Sửa địa chỉ" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/locationupdate.jsp" />
+    </definition>
+    <definition name="who" extends="baseLayout">
+        <put-attribute name="title" value="Bạn là ai?" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/who.jsp" />
+    </definition>
 </tiles-definitions>

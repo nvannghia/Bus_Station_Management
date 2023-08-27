@@ -47,18 +47,18 @@ public class Location implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{location.cityName.notNull}")
+    @Size(min = 5, max = 45, message = "{location.cityName.lenErr}")
     @Column(name = "city_name")
     private String cityName;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{location.districtName.notNull}")
+    @Size(min = 1, max = 45, message = "{location.districtName.lenErr}")
     @Column(name = "district_name")
     private String districtName;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @NotNull(message = "{location.streetName.notNull}")
+    @Size(min = 3, max = 45, message = "{location.streetName.lenErr}")
     @Column(name = "street_name")
     private String streetName;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departureId")

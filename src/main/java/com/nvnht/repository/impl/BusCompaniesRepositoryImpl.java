@@ -89,4 +89,13 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
             return false;
         }
     }
+
+    @Override
+    public Buscompanies getBusCompanyByUserId(int userId) {
+        Session s = this.F.getObject().getCurrentSession();
+        Query query = s.createQuery("FROM Buscompanies WHERE idUser = :userId")
+                        .setParameter("userId", userId);
+        return (Buscompanies) query.getSingleResult();
+       
+    }
 }

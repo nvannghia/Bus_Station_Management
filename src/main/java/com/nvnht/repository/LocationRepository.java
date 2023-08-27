@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface LocationRepository {
     boolean addLocation(Location l);
-    List<Location> getLocationes();
+    List<Location> getLocationesByBusId(int busId);
     Location getLocationById(int id);
     boolean deleteLocation(int id);
     boolean updateLocation(Location l);

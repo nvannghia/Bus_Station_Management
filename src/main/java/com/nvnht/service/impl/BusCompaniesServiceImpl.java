@@ -40,5 +40,10 @@ public class BusCompaniesServiceImpl implements BusCompaniesService{
     public boolean addBusCompany(User u, Buscompanies b) {
         return this.busRepo.addBusCompany(u,b);
     }
+
+    @Override
+    public Buscompanies getBusCompanyByUserId(int userId) {
+        return this.busRepo.getBusCompanyByUserId(userId);
+    }
     
 }

@@ -14,3 +14,14 @@ lấy nhà xe nào có id user = id user đang đăng nhập vào hệ thống.
  + buscompanies_id : lúc user là nhà xe đăng nhập thì lấy id user rồi qua bảng nhà xe
 lấy nhà xe nào có id user = id user đang đăng nhập vào hệ thống. (BẮT BUỘC PHẢI lấy được id của nhà xe để
  lấy đc các location của nhà xe rồi cho vào select box các location dựa trên id nhà xe để tạo tuyến)
+
+
+
+
+
+
+
+
+
++Thêm vị trí nhà xe:
++ lấy user đang đăng nhập -> find user by username(trả về đối tượng tiếp tục lấy id từ đối tượng user) -> lấy id user qua bảng buscompanies xem nhà xe nào có id user = id user.

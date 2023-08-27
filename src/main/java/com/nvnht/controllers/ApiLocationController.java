@@ -64,15 +64,15 @@ public class ApiLocationController {
     }
 
     //READ
-    @GetMapping("/location/")
-    @CrossOrigin
-    public ResponseEntity<List<Location>> list() {
-        List<Location> locationes = this.locationServ.getLocationes();
-        if (locationes.isEmpty()) {
-            return new ResponseEntity<List<Location>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Location>>(locationes, HttpStatus.OK);
-    }
+//    @GetMapping("/location/")
+//    @CrossOrigin
+//    public ResponseEntity<List<Location>> list() {
+//        List<Location> locationes = this.locationServ.getLocationes();
+//        if (locationes.isEmpty()) {
+//            return new ResponseEntity<List<Location>>(HttpStatus.NO_CONTENT);
+//        }
+//        return new ResponseEntity<List<Location>>(locationes, HttpStatus.OK);
+//    }
 
     //UPDATE
     @PatchMapping("/location/update/{id}")

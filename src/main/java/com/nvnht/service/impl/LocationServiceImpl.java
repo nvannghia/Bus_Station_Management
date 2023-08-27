@@ -25,10 +25,6 @@ public class LocationServiceImpl implements LocationService{
         return this.locationRepo.addLocation(l);
     }
 
-    @Override
-    public List<Location> getLocationes() {
-        return this.locationRepo.getLocationes();
-    }
 
     @Override
     public Location getLocationById(int id) {
@@ -43,6 +39,11 @@ public class LocationServiceImpl implements LocationService{
     @Override
     public boolean updateLocation(Location l) {
         return this.locationRepo.updateLocation(l);
+    }
+
+    @Override
+    public List<Location> getLocationesByBusId(int busId) {
+        return this.locationRepo.getLocationesByBusId(busId);
     }
     
 }

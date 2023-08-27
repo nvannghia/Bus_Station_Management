@@ -16,7 +16,7 @@ public interface LocationService {
 
     boolean addLocation(Location l);
 
-    public List<Location> getLocationes();
+//    public List<Location> getLocationes();
 
     Location getLocationById(int id);
 
@@ -24,4 +24,5 @@ public interface LocationService {
 
     boolean updateLocation(Location l);
 
+    List<Location> getLocationesByBusId(int busId);
 }

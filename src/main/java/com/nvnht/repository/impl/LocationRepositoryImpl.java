@@ -5,14 +5,20 @@
  */
 package com.nvnht.repository.impl;
 
+import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.Location;
+import com.nvnht.pojo.User;
 import com.nvnht.repository.LocationRepository;
+import com.nvnht.service.BusCompaniesService;
+import com.nvnht.service.UserService;
 import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +32,10 @@ public class LocationRepositoryImpl implements LocationRepository {
 
     @Autowired
     private LocalSessionFactoryBean F;
+    @Autowired
+    private UserService userServ;
+    @Autowired
+    private BusCompaniesService busServ;
 
     @Override
     public boolean addLocation(Location l) {
@@ -39,13 +49,6 @@ public class LocationRepositoryImpl implements LocationRepository {
             ex.printStackTrace();
             return false;
         }
-    }
-
-    @Override
-    public List<Location> getLocationes() {
-        Session s = this.F.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM Location");
-        return q.getResultList();
     }
 
     @Override
@@ -77,6 +80,14 @@ public class LocationRepositoryImpl implements LocationRepository {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Location> getLocationesByBusId(int busId) {
+        Session s = this.F.getObject().getCurrentSession();
+        Query query = s.createQuery("FROM Location WHERE buscompaniesId.id = :busId")
+                .setParameter("busId", busId);
+        return query.getResultList();
     }
 
 }

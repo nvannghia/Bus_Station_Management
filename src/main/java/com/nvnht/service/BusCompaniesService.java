@@ -16,6 +16,8 @@ import java.util.List;
 public interface BusCompaniesService {
     List<Buscompanies> getBusCompanies();
     Buscompanies getBusCompanyById(int id);
+    Buscompanies getBusCompanyByUserId(int userId);
     boolean update(int id);
     boolean addBusCompany(User u, Buscompanies b);
+    
 }

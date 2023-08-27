@@ -5,7 +5,10 @@
  */
 package com.nvnht.configs;
 
+import com.nvnht.pojo.Buscompanies;
+import com.nvnht.pojo.User;
 import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +17,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
@@ -51,7 +56,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     //phan quyen
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class); 
+        http.addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class);
         http.formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password");
@@ -62,17 +67,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout().logoutSuccessUrl("/login");
         http.exceptionHandling()
                 .accessDeniedPage("/login?accessDenied");
-        
+
         http.authorizeRequests().antMatchers("/").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/createBusCompanyAccount").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/api/buscompanies").permitAll();
+                .antMatchers("/api/buscompanies").permitAll()
+                .antMatchers("/location/**").access("hasRole('ROLE_BUSCOMPANY')");
 //                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
         http.csrf().disable();
     }
-    
-    
+
     @Bean
-    public SimpleDateFormat simpleDateFormat(){
+    public SimpleDateFormat simpleDateFormat() {
         return new SimpleDateFormat("yyyy-MM--dd");
     }
 
