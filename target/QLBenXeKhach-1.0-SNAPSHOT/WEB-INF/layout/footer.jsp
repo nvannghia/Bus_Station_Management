@@ -68,7 +68,7 @@
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center text-dark p-3" style="background-color: #f1f1f1">
         © 2023 Copyright:
         <a class="text-dark" href="https://mdbootstrap.com/">NVN-HT</a>
     </div>

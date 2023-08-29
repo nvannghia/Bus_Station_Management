@@ -88,10 +88,14 @@ public class LocationController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute(value = "location") Location locate) {
-        if (this.locateServ.updateLocation(locate) == true) {
-            return "redirect:/location/list";
+    public String update(@ModelAttribute(value = "location") @Valid Location locate,
+            BindingResult rs) {
+        if(!rs.hasErrors()){
+            if (this.locateServ.updateLocation(locate) == true) {
+               return "redirect:/location/list";
+            }   
         }
-        return "error";
+        
+        return "addlocation";
     }
 }

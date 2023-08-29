@@ -5,13 +5,4 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Something wrong!</h1>
-    </body>
-</html>
+<h1 class="alert alert-danger"> Đã có lỗi xảy ra, vui lòng thử lại sau! </h1>

@@ -45,5 +45,10 @@ public class RoutesServiceImpl implements RoutesService{
     public boolean deleteRoute(int id) {
         return this.routesRepo.deleteRoute(id);
     }
+
+    @Override
+    public List<Routes> getRoutesByBusId(int busId) {
+        return this.routesRepo.getRoutesByBusId(busId);
+    }
     
 }

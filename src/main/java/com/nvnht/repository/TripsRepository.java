@@ -15,7 +15,7 @@ import java.util.List;
 public interface TripsRepository {
 
     List<Trips> getTrips();
-
+    
     boolean addTrip(Trips trip);
 
     Trips getTripById(int id);

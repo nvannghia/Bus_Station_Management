@@ -7,11 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
- <a href="<c:url value="/location/add" />" class="btn btn-info mt-2 mb-2">Thêm địa chỉ</a>
+ <a href="<c:url value="/location/add" />" class="btn btn-success mt-2 mb-2">Thêm địa chỉ</a>
 <c:if test="${locationes.isEmpty()}">
     <h1 class="text-danger"> Chưa có địa chỉ nào ! </h1>
 </c:if>
 <c:if test="${!locationes.isEmpty()}" >
+    <h1 class="text-center text-success">Tất cả các địa chỉ</h1>
 <table class="table table-success table-striped ">
     <thead>
         <tr>
@@ -31,7 +32,7 @@
                 <td>${locate.cityName}</td>
                 <td >
                     <a 
-                        class="btn btn-success" 
+                        class="btn btn-warning" 
                         href="<c:url value="/location/update/${locate.id}"/>"
                     >
                         Sửa

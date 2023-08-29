@@ -77,5 +77,13 @@ public class RoutesRepositoryImpl implements RoutesRepository{
             return false;
         }
     }
+
+    @Override
+    public List<Routes> getRoutesByBusId(int busId) {
+        Session s = this.F.getObject().getCurrentSession();
+        Query query = s.createQuery("FROM Routes WHERE buscompaniesId.id = :busId")
+                        .setParameter("busId", busId);
+        return query.getResultList();
+    }
     
 }

@@ -22,6 +22,7 @@ com\nvnht\pojo\User.class
 com\nvnht\pojo\Avatar_.class
 com\nvnht\pojo\Trips_.class
 com\nvnht\pojo\Location.class
+com\nvnht\controllers\RoutesController.class
 com\nvnht\pojo\User_.class
 com\nvnht\service\LocationService.class
 com\nvnht\pojo\Routes.class
@@ -40,6 +41,7 @@ com\nvnht\controllers\AdminController.class
 com\nvnht\pojo\Avatar.class
 com\nvnht\pojo\Deliveries_.class
 com\nvnht\repository\LocationRepository.class
+com\nvnht\controllers\SystemController.class
 com\nvnht\pojo\Routes_.class
 com\nvnht\pojo\Ticket.class
 com\nvnht\service\impl\UserServiceImpl.class
@@ -54,7 +56,7 @@ com\nvnht\configs\SecurityWebAppInitializer.class
 com\nvnht\repository\TripsRepository.class
 com\nvnht\pojo\Shipmentdetails_.class
 com\nvnht\pojo\UserDetail_.class
+com\nvnht\controllers\TripsController.class
 com\nvnht\configs\DispatcherServletInit.class
-com\nvnht\controllers\ApiTripsController.class
 com\nvnht\configs\TilesConfig.class
 com\nvnht\controllers\ApiLocationController.class

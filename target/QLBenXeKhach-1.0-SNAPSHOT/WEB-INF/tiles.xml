@@ -57,4 +57,35 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/pages/who.jsp" />
     </definition>
+    
+    <definition name="who" extends="baseLayout">
+        <put-attribute name="title" value="Bạn là ai?" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/who.jsp" />
+    </definition>
+    
+    
+    <!--routes definition-->
+    <definition name="routeslist" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách tuyến" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/routeslist.jsp" />
+    </definition>
+    <definition name="routesadd" extends="baseLayout">
+        <put-attribute name="title" value="Thêm tuyến" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/routesadd.jsp" />
+    </definition>
+    <definition name="routesupdate" extends="baseLayout">
+        <put-attribute name="title" value="Sửa tuyến" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/routesupdate.jsp" />
+    </definition>
+    
+    <!--TRIPS-->
+    <definition name="tripsadd" extends="baseLayout">
+        <put-attribute name="title" value="Thêm chuyến xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/tripsadd.jsp" />
+    </definition>
 </tiles-definitions>

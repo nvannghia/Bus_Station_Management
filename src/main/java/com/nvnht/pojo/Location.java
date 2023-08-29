@@ -5,12 +5,14 @@
  */
 package com.nvnht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,10 +63,12 @@ public class Location implements Serializable {
     @Size(min = 3, max = 45, message = "{location.streetName.lenErr}")
     @Column(name = "street_name")
     private String streetName;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departureId")
-//    private Set<Routes> routesSet;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "destinationId")
-//    private Set<Routes> routesSet1;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "departureId")
+    private Set<Routes> routesSet;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "destinationId")
+    private Set<Routes> routesSet1;
     @JoinColumn(name = "buscompanies_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Buscompanies buscompaniesId;

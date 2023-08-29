@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Trips.findAll", query = "SELECT t FROM Trips t"),
     @NamedQuery(name = "Trips.findById", query = "SELECT t FROM Trips t WHERE t.id = :id"),
     @NamedQuery(name = "Trips.findByDepartureDate", query = "SELECT t FROM Trips t WHERE t.departureDate = :departureDate"),
-    @NamedQuery(name = "Trips.findByDepartureTime", query = "SELECT t FROM Trips t WHERE t.departureTime = :departureTime"),
+//    @NamedQuery(name = "Trips.findByDepartureTime", query = "SELECT t FROM Trips t WHERE t.departureTime = :departureTime"),
     @NamedQuery(name = "Trips.findByLicensePlates", query = "SELECT t FROM Trips t WHERE t.licensePlates = :licensePlates"),
     @NamedQuery(name = "Trips.findBySeatNumber", query = "SELECT t FROM Trips t WHERE t.seatNumber = :seatNumber")})
 public class Trips implements Serializable {
@@ -55,11 +55,12 @@ public class Trips implements Serializable {
     @Column(name = "departure_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date departureDate;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "departure_time")
-    @Temporal(TemporalType.TIME)
-    private Date departureTime;
+
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "departure_time")
+//    @Temporal(TemporalType.TIME)
+//    private Date departureTime;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -68,7 +69,7 @@ public class Trips implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "seat_number")
-    private int seatNumber;
+    private Integer seatNumber;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
 //    private Set<Ticket> ticketSet;
     @JoinColumn(name = "routes_id", referencedColumnName = "id")
@@ -84,10 +85,10 @@ public class Trips implements Serializable {
         this.id = id;
     }
 
-    public Trips(Integer id, Date departureDate, Date departureTime, String licensePlates, int seatNumber) {
+    public Trips(Integer id, Date departureDate, String licensePlates, int seatNumber) {
         this.id = id;
         this.departureDate = departureDate;
-        this.departureTime = departureTime;
+//        this.departureTime = departureTime;
         this.licensePlates = licensePlates;
         this.seatNumber = seatNumber;
     }
@@ -108,13 +109,13 @@ public class Trips implements Serializable {
         this.departureDate = departureDate;
     }
 
-    public Date getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
-    }
+//    public Date getDepartureTime() {
+//        return departureTime;
+//    }
+//
+//    public void setDepartureTime(Date departureTime) {
+//        this.departureTime = departureTime;
+//    }
 
     public String getLicensePlates() {
         return licensePlates;
@@ -124,13 +125,7 @@ public class Trips implements Serializable {
         this.licensePlates = licensePlates;
     }
 
-    public int getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
-    }
+   
 
 //    @XmlTransient
 //    public Set<Ticket> getTicketSet() {
@@ -181,6 +176,20 @@ public class Trips implements Serializable {
     @Override
     public String toString() {
         return "com.nvnht.pojo.Trips[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the seatNumber
+     */
+    public Integer getSeatNumber() {
+        return seatNumber;
+    }
+
+    /**
+     * @param seatNumber the seatNumber to set
+     */
+    public void setSeatNumber(Integer seatNumber) {
+        this.seatNumber = seatNumber;
     }
     
 }

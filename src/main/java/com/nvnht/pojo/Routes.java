@@ -5,12 +5,14 @@
  */
 package com.nvnht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +22,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -44,9 +48,9 @@ public class Routes implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{route.fare.notNull}")
     @Column(name = "fare")
-    private int fare;
+    private Integer fare;
     @JoinColumn(name = "buscompanies_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Buscompanies buscompaniesId;
@@ -56,8 +60,9 @@ public class Routes implements Serializable {
     @JoinColumn(name = "destination_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Location destinationId;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "routesId")
-//    private Set<Trips> tripsSet;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "routesId")
+    private Set<Trips> tripsSet;
 
     public Routes() {
     }
@@ -79,13 +84,7 @@ public class Routes implements Serializable {
         this.id = id;
     }
 
-    public int getFare() {
-        return fare;
-    }
-
-    public void setFare(int fare) {
-        this.fare = fare;
-    }
+  
 
     public Buscompanies getBuscompaniesId() {
         return buscompaniesId;
@@ -143,6 +142,20 @@ public class Routes implements Serializable {
     @Override
     public String toString() {
         return "com.nvnht.pojo.Routes[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the fare
+     */
+    public Integer getFare() {
+        return fare;
+    }
+
+    /**
+     * @param fare the fare to set
+     */
+    public void setFare(Integer fare) {
+        this.fare = fare;
     }
     
 }

@@ -23,4 +23,6 @@ public interface RoutesService {
     boolean updateRoute(Routes r);
 
     boolean deleteRoute(int id);
+
+    List<Routes> getRoutesByBusId(int busId);
 }

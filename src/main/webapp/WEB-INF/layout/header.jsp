@@ -7,7 +7,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<!DOCTYPE html>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
@@ -29,25 +28,31 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/location/list"/>">Xem địa chỉ</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/routes/list"/>">Xem tuyến xe</a>
+                    </li>
                 </sec:authorize>
                 <c:if  test="${pageContext.request.userPrincipal.name == null}">
-                    <li class="nav-item">
+                    <li class="nav-item me-auto">
                         <a class="nav-link text-danger" href="<c:url value="/login"/>">Đăng nhập</a>
                     </li>
                 </c:if>
-                <c:if  test="${pageContext.request.userPrincipal.name != null}">
-                    <li class="nav-item">
-                        <a class="nav-link text-info logged" href="<c:url value="/"/>">
-                            ${pageContext.request.userPrincipal.name}
-                        </a>
-                    </li>
-                    <li class="nav-item  state">
-                        <a class="nav-link text-danger logout" href="<c:url value="/logout"/>">
-                            Đăng xuất
-                        </a>
-                    </li>
-                </c:if>
+
             </ul>
         </div>
+        <ul class="navbar-nav d-flex">
+            <c:if  test="${pageContext.request.userPrincipal.name != null}">
+                <li class="nav-item me-2 ">
+                    <a class="nav-link text-info logged h5" href="<c:url value="/"/>">
+                       Tài khoản: ${pageContext.request.userPrincipal.name}
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a class="nav-link text-danger logout" href="<c:url value="/logout"/>">
+                        Đăng xuất
+                    </a>
+                </li>
+            </c:if>
+        </ul>
     </div>
 </nav>

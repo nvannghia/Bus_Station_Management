@@ -13,7 +13,10 @@ import java.util.List;
  * @author nghia
  */
 public interface RoutesRepository {
+
     List<Routes> getRoutes();
+
+    List<Routes> getRoutesByBusId(int busId);
 
     boolean addRoute(Routes r);
 
