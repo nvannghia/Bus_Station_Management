@@ -7,6 +7,7 @@ package com.nvnht.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -40,7 +41,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Routes.findById", query = "SELECT r FROM Routes r WHERE r.id = :id"),
     @NamedQuery(name = "Routes.findByFare", query = "SELECT r FROM Routes r WHERE r.fare = :fare")})
 public class Routes implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,16 +51,20 @@ public class Routes implements Serializable {
     @NotNull(message = "{route.fare.notNull}")
     @Column(name = "fare")
     private Integer fare;
+    
+    
     @JoinColumn(name = "buscompanies_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
     private Buscompanies buscompaniesId;
+    
+    
     @JoinColumn(name = "departure_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Location departureId;
     @JoinColumn(name = "destination_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Location destinationId;
-    @JsonIgnore
+    
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "routesId")
     private Set<Trips> tripsSet;
 
@@ -110,14 +114,14 @@ public class Routes implements Serializable {
         this.destinationId = destinationId;
     }
 
-//    @XmlTransient
-//    public Set<Trips> getTripsSet() {
-//        return tripsSet;
-//    }
-//
-//    public void setTripsSet(Set<Trips> tripsSet) {
-//        this.tripsSet = tripsSet;
-//    }
+    @XmlTransient
+    public Set<Trips> getTripsSet() {
+        return tripsSet;
+    }
+
+    public void setTripsSet(Set<Trips> tripsSet) {
+        this.tripsSet = tripsSet;
+    }
 
     @Override
     public int hashCode() {
@@ -157,5 +161,10 @@ public class Routes implements Serializable {
     public void setFare(Integer fare) {
         this.fare = fare;
     }
-    
+
+    /**
+     * @return the fare
+     */
+ 
+
 }

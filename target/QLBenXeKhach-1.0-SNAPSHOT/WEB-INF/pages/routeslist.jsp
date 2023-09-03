@@ -33,7 +33,7 @@
                     <td>
                         <fmt:formatNumber value="${route.fare}"/> vnđ
                     </td>
-                    
+
                     <td>
                         ${route.departureId.streetName}, 
                         ${route.departureId.districtName},
@@ -46,16 +46,18 @@
                     </td>
                     <td >
                         <a 
+                            onclick=" return confirm('Việc chỉnh sửa có thể sẽ ảnh hưởng đến các chuyến xe, bạn chắc chứ?')"
                             class="btn btn-warning" 
                             href="<c:url value="/routes/update/${route.id}"/>"
                             >
-                            Sửa
+                            <i class="fa-solid fa-pencil"></i>
                         </a>
                         <a 
+                            onclick=" return confirm('Việc xóa có thể sẽ ảnh hưởng đến các chuyến xe, bạn chắc chứ?')"
                             class="btn btn-danger" 
                             href="<c:url value="/routes/delete/${route.id}"/>"
                             >
-                            Xóa
+                             <i class="fa-regular fa-trash-can"></i>
                         </a>
                     </td>
                     <td>

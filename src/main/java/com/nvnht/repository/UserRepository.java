@@ -7,6 +7,7 @@ package com.nvnht.repository;
 
 
 import com.nvnht.pojo.User;
+import com.nvnht.pojo.UserDetail;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @author nghia
  */
 public interface UserRepository {
-    boolean addUser(User user);
+    boolean addUserCustomer(User user, UserDetail userDetail);
     User findUserByUsername(String username);
     List<User> getUsers(String username);
 }

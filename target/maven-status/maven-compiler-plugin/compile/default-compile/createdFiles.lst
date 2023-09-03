@@ -3,12 +3,16 @@ com\nvnht\pojo\UserDetail.class
 com\nvnht\repository\impl\LocationRepositoryImpl.class
 com\nvnht\formatter\RoutesFormatter.class
 com\nvnht\pojo\Trips.class
+com\nvnht\repository\TicketRepository.class
 com\nvnht\configs\SpringSecurityConfig.class
+com\nvnht\service\impl\TicketServiceImpl.class
 com\nvnht\repository\RoutesRepository.class
 com\nvnht\pojo\Shipmentdetails.class
+com\nvnht\repository\impl\TicketRepositoryImpl.class
 com\nvnht\service\TripsService.class
 com\nvnht\controllers\ApiRoutesController.class
 com\nvnht\service\impl\LocationServiceImpl.class
+com\nvnht\formatter\UserFormatter.class
 com\nvnht\configs\WebAppContextConfig.class
 com\nvnht\pojo\Review_.class
 com\nvnht\repository\BusCompaniesRepository.class
@@ -27,6 +31,7 @@ com\nvnht\pojo\User_.class
 com\nvnht\service\LocationService.class
 com\nvnht\pojo\Routes.class
 com\nvnht\repository\impl\UserRepositoryImpl.class
+com\nvnht\controllers\TicketController.class
 com\nvnht\formatter\BuscompaniesFormatter.class
 com\nvnht\pojo\Deliveries.class
 com\nvnht\repository\impl\BusCompaniesRepositoryImpl.class
@@ -51,6 +56,7 @@ com\nvnht\service\impl\RoutesServiceImpl.class
 com\nvnht\pojo\Ticket_.class
 com\nvnht\controllers\IndexController.class
 com\nvnht\controllers\UserController.class
+com\nvnht\formatter\TripsFormatter.class
 com\nvnht\pojo\Buscompanies.class
 com\nvnht\configs\SecurityWebAppInitializer.class
 com\nvnht\repository\TripsRepository.class
@@ -58,5 +64,6 @@ com\nvnht\pojo\Shipmentdetails_.class
 com\nvnht\pojo\UserDetail_.class
 com\nvnht\controllers\TripsController.class
 com\nvnht\configs\DispatcherServletInit.class
+com\nvnht\service\TicketService.class
 com\nvnht\configs\TilesConfig.class
 com\nvnht\controllers\ApiLocationController.class

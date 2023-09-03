@@ -17,9 +17,14 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Thêm Chuyến Xe</p>
-                                <c:url value="/trips/add" var="action" />
 
+                                <c:url value="/trips/add" var="action" />
                                 <form:form modelAttribute="trip"  class="mx-1 mx-md-4" method="post" action="${action}">
+
+                                    <c:if test="${!msgErr.isEmpty()}">
+                                        <div class=" text-danger h5">${msgErr} </div>
+                                    </c:if>
+
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-regular fa-calendar-days fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
@@ -28,6 +33,18 @@
                                         </div>
                                     </div>
 
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-solid fa-clock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <form:input min="0" max="23" type="number" path="hour"  id="hour" name="hour" class="form-control" placeholder="Chọn giờ"/>
+                                            <label class="form-label" for="hour">Giờ</label>
+                                        </div>
+
+                                        <div class="form-outline flex-fill mb-0 ">
+                                            <form:input step="5" min="0" max="55"  type="number" path="minute"  id="minute" name="minute" class="form-control" placeholder="Chọn phút"/>
+                                            <label class="form-label" for="minute">Phút</label>
+                                        </div>
+                                    </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-bus-simple fa-lg me-3 fa-fw"></i>
@@ -40,7 +57,12 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-couch fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <form:input min="16" max="45" type="number" path="seatNumber"  id="seatNumber" name="seatNumber" class="form-control" placeholder="Nhập số ghế"/>
+                                            <form:select class="form-select" path="seatNumber" name="seatNumber" id="seatNumber">
+                                                <option value="16">16</option>                                                    
+                                                <option value="30">30</option>
+                                                <option value="35">35</option>
+                                                <option value="45">45</option>
+                                            </form:select>
                                             <label class="form-label" for="seatNumber">Số ghế</label>
                                         </div>
                                     </div>

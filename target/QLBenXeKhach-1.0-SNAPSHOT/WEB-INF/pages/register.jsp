@@ -21,13 +21,12 @@
 
                                 <c:url value="/createBusCompanyAccount" var="{action}" />
                                 <form class="mx-1 mx-md-4" method="post" action="${action}">
-                                    ${error}
-
+                                    
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="user.username" >
-                                                <input type="text"  id="username" name="username" class="form-control" />
+                                                <input type="text"  id="username" name="username" class="form-control"/>
                                             </spring:bind>
                                             <label class="form-label" for="username">Tên đăng nhập</label>
                                             <form:errors path="user.username" element="div" cssClass="text-danger" />

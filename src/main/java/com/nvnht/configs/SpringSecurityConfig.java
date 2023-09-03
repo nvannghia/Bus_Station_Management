@@ -71,14 +71,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/createBusCompanyAccount").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/api/buscompanies").permitAll()
-                .antMatchers("/location/**").access("hasRole('ROLE_BUSCOMPANY')");
-//                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+                .antMatchers("/location/**").access("hasRole('ROLE_BUSCOMPANY')")
+                .antMatchers("/routes/**").access("hasRole('ROLE_BUSCOMPANY')")
+                .antMatchers("/trips/**").access("hasRole('ROLE_BUSCOMPANY')")
+                .antMatchers("/ticket/**").access("hasRole('ROLE_BUSCOMPANY')");
+        //                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
         http.csrf().disable();
     }
 
     @Bean
     public SimpleDateFormat simpleDateFormat() {
-        return new SimpleDateFormat("yyyy-MM--dd");
+        return new SimpleDateFormat("dd-MM-yyyy");
     }
 
 }

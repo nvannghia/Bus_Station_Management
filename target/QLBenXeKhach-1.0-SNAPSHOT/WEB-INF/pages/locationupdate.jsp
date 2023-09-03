@@ -23,7 +23,24 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-city fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <form:input type="text" path="cityName"  id="cityName" name="cityName" class="form-control" placeholder="Nhập tên thành phố"/>
+                                            <form:select class="form-select" path="cityName" name="cityName" id="cityName" >
+                                                <c:forEach items="${citiesName}" var="cityName">
+                                                    <c:choose>
+                                                        <c:when test="${location.cityName == cityName}">
+                                                            <option value="${cityName}" selected>
+                                                                ${cityName}
+                                                            </option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${cityName}">
+                                                                ${cityName}
+                                                            </option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </c:forEach>
+                                            </form:select>
+                                            <%--<form:input type="text" path="cityName"  id="cityName" name="cityName" class="form-control" placeholder="Nhập tên thành phố"/>--%>
                                             <label class="form-label" for="cityName">Tên Thành Phố</label>
                                         </div>
                                     </div>

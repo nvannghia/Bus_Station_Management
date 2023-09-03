@@ -8,7 +8,11 @@ package com.nvnht.configs;
 import com.nvnht.formatter.BuscompaniesFormatter;
 import com.nvnht.formatter.LocationFormatter;
 import com.nvnht.formatter.RoutesFormatter;
+import com.nvnht.formatter.TripsFormatter;
+import com.nvnht.formatter.UserFormatter;
 import com.nvnht.pojo.Buscompanies;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -59,6 +63,8 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         registry.addFormatter(new BuscompaniesFormatter());
         registry.addFormatter(new LocationFormatter());
         registry.addFormatter(new RoutesFormatter());
+        registry.addFormatter(new TripsFormatter());
+        registry.addFormatter(new UserFormatter());
     }
     
     
@@ -83,4 +89,11 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     public Validator getValidator() {
         return validator();
     }
+    
+    @Bean
+    public SimpleDateFormat simpleDateFormat() {
+        return new SimpleDateFormat("dd-MM-yyyy");
+    }
+    
+    
 }

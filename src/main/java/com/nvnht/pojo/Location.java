@@ -170,4 +170,8 @@ public class Location implements Serializable {
         return "com.nvnht.pojo.Location[ id=" + id + " ]";
     }
     
+    // for ticket get full address
+    public String getFullAddress(){
+        return String.format("%s, %s, %S",this.streetName,this.getDistrictName(),this.cityName);
+    }
 }

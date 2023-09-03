@@ -42,7 +42,10 @@ public class AdminController {
 
     @GetMapping("/createBusCompanyAccount")
     public String addBusCompany(ModelMap model) {
-        model.addAttribute("user", new User());
+        User user = new User();
+        user.setUsername(null);
+        user.setPassword(null);
+        model.addAttribute("user", user);
         model.addAttribute("buscompany", new Buscompanies());
         return "register";
     }

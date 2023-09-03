@@ -7,12 +7,17 @@ package com.nvnht.controllers;
 
 import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.User;
+import com.nvnht.pojo.UserDetail;
 import com.nvnht.service.BusCompaniesService;
 import com.nvnht.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -22,23 +27,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SystemController {
     
-    private static User u;
-    private static Buscompanies busCompany;
-    @Autowired
-    private static UserService userServ;
-    @Autowired
-    private static BusCompaniesService busServ;
+    
     
     @RequestMapping("/who")
     public String who(){
         return "who";
     }
     
-//   public static Buscompanies getLogged(){
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String username = auth.getName(); // get username of current user logged
-//        u = userServ.findUserByUsername(username);
-//        busCompany = busServ.getBusCompanyByUserId(u.getId());
-//        return busCompany;
-//   }
+    
+    
+    
+   
 }

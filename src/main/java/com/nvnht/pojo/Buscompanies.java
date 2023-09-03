@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,9 +72,12 @@ public class Buscompanies implements Serializable {
     @NotNull
     @Column(name = "id_user")
     private int idUser;
+    
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Routes> routesSet;
+    
+    
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Ticket> ticketSet;

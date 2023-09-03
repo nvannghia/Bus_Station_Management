@@ -6,6 +6,7 @@
 package com.nvnht.service.impl;
 
 import com.nvnht.pojo.User;
+import com.nvnht.pojo.UserDetail;
 import com.nvnht.service.UserService;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,11 +30,6 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepo;
 
     @Override
-    public boolean addUser(User user) {
-        return this.userRepo.addUser(user);
-    }
-
-    @Override
     public List<User> getUsers(String username) {
         return this.userRepo.getUsers(username);
     }
@@ -55,6 +51,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByUsername(String username) {
         return this.userRepo.findUserByUsername(username);
+    }
+
+    @Override
+    public boolean addUserCustomer(User user, UserDetail userDetail) {
+        return this.userRepo.addUserCustomer(user, userDetail);
     }
 
 }

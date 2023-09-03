@@ -5,6 +5,7 @@
  */
 package com.nvnht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -12,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,19 +52,34 @@ public class Trips implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
+    
+   
+//   @Basic(optional = false)
+//    @NotNull(message = "{buscompany.name.notNull}")
+//    @Size(min = 1, max = 45, message = "{buscompany.name.lenErr}")
+//    @Column(name = "name")
+//    private String name;
+    
+    //da doi tu date sang string
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{trips.departureDate.notNull}")
     @Column(name = "departure_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date departureDate;
-
-//    @Basic(optional = false)
-//    @NotNull
-//    @Column(name = "departure_time")
-//    @Temporal(TemporalType.TIME)
-//    private Date departureTime;
+    private String departureDate;
+    
+    
+    @Basic(optional = false)
+    @NotNull(message = "{trips.hour.minute.notNull}")
+    @Column(name = "hour")
+    private int hour;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "minute")
+    private int minute;
+    
+    
+    @Basic(optional = false)
+    @NotNull(message = "{trips.licensePlates.notNull}")
     @Size(min = 1, max = 45)
     @Column(name = "license_plates")
     private String licensePlates;
@@ -70,10 +87,12 @@ public class Trips implements Serializable {
     @NotNull
     @Column(name = "seat_number")
     private Integer seatNumber;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
-//    private Set<Ticket> ticketSet;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "tripsId")
+    private Set<Ticket> ticketSet;
+    
     @JoinColumn(name = "routes_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
     private Routes routesId;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripsId")
 //    private Set<Deliveries> deliveriesSet;
@@ -85,7 +104,7 @@ public class Trips implements Serializable {
         this.id = id;
     }
 
-    public Trips(Integer id, Date departureDate, String licensePlates, int seatNumber) {
+    public Trips(Integer id, String departureDate, String licensePlates, int seatNumber) {
         this.id = id;
         this.departureDate = departureDate;
 //        this.departureTime = departureTime;
@@ -101,13 +120,13 @@ public class Trips implements Serializable {
         this.id = id;
     }
 
-    public Date getDepartureDate() {
-        return departureDate;
-    }
-
-    public void setDepartureDate(Date departureDate) {
-        this.departureDate = departureDate;
-    }
+//    public Date getDepartureDate() {
+//        return departureDate;
+//    }
+//
+//    public void setDepartureDate(Date departureDate) {
+//        this.departureDate = departureDate;
+//    }
 
 //    public Date getDepartureTime() {
 //        return departureTime;
@@ -116,7 +135,6 @@ public class Trips implements Serializable {
 //    public void setDepartureTime(Date departureTime) {
 //        this.departureTime = departureTime;
 //    }
-
     public String getLicensePlates() {
         return licensePlates;
     }
@@ -125,17 +143,14 @@ public class Trips implements Serializable {
         this.licensePlates = licensePlates;
     }
 
-   
+    @XmlTransient
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
+    }
 
-//    @XmlTransient
-//    public Set<Ticket> getTicketSet() {
-//        return ticketSet;
-//    }
-//
-//    public void setTicketSet(Set<Ticket> ticketSet) {
-//        this.ticketSet = ticketSet;
-//    }
-
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
+    }
     public Routes getRoutesId() {
         return routesId;
     }
@@ -152,7 +167,6 @@ public class Trips implements Serializable {
 //    public void setDeliveriesSet(Set<Deliveries> deliveriesSet) {
 //        this.deliveriesSet = deliveriesSet;
 //    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -191,5 +205,47 @@ public class Trips implements Serializable {
     public void setSeatNumber(Integer seatNumber) {
         this.seatNumber = seatNumber;
     }
-    
+
+    /**
+     * @return the hour
+     */
+    public int getHour() {
+        return hour;
+    }
+
+    /**
+     * @param hour the hour to set
+     */
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    /**
+     * @return the minute
+     */
+    public int getMinute() {
+        return minute;
+    }
+
+    /**
+     * @param minute the minute to set
+     */
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    /**
+     * @return the departureDate
+     */
+    public String getDepartureDate() {
+        return departureDate;
+    }
+
+    /**
+     * @param departureDate the departureDate to set
+     */
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
+    }
+
 }

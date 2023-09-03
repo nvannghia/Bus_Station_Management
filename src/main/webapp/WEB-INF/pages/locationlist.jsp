@@ -31,17 +31,21 @@
                 <td>${locate.districtName}</td>
                 <td>${locate.cityName}</td>
                 <td >
-                    <a 
+                    <a  
+                        onclick=" return confirm('Việc chỉnh sửa có thể sẽ ảnh hưởng đến các tuyến xe, bạn chắc chứ?')"
                         class="btn btn-warning" 
                         href="<c:url value="/location/update/${locate.id}"/>"
+                        title="Sửa"
                     >
-                        Sửa
+                       <i class="fa-solid fa-pencil"></i>
                     </a>
                     <a 
+                        onclick=" return confirm('Việc xóa có thể sẽ ảnh hưởng đến các tuyến xe, bạn chắc chứ?')"
                         class="btn btn-danger" 
                         href="<c:url value="/location/delete/${locate.id}"/>"
+                        title="Xóa"
                     >
-                        Xóa
+                         <i class="fa-regular fa-trash-can"></i>
                     </a>
                 </td>
             </tr>

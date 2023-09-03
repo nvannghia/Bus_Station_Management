@@ -64,6 +64,9 @@
     <class>com.nvn.pojo.Ticket</class>
     <class>com.nvn.pojo.Trips</class>
     <class>com.nvn.pojo.Routes</class>
+    <class>testPK.Trips</class>
+    <class>testPK.Location</class>
+    <class>testPK.Buscompanies</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/qlbxk?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

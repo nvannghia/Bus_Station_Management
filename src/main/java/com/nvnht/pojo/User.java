@@ -20,10 +20,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import net.bytebuddy.implementation.bind.annotation.Empty;
 
 /**
  *
@@ -52,7 +55,7 @@ public class User implements Serializable {
     @Valid
     private Integer id;
     @Basic(optional = false)
-    @NotNull(message = "{user.username.notNull}")
+    @NotNull(message = "{user.username.notNull}") 
     @Size(min = 5, max = 45, message = "{user.username.lenErr}")
     @Column(name = "username")
     private String username;

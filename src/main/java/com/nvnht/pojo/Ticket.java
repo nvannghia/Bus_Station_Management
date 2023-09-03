@@ -5,11 +5,14 @@
  */
 package com.nvnht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +40,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ticket.findByPayment", query = "SELECT t FROM Ticket t WHERE t.payment = :payment"),
     @NamedQuery(name = "Ticket.findByCreatedAt", query = "SELECT t FROM Ticket t WHERE t.createdAt = :createdAt")})
 public class Ticket implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,12 +59,21 @@ public class Ticket implements Serializable {
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "sold")
+    private short sold;
+    
+    
     @JoinColumn(name = "buscompanies_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Buscompanies buscompaniesId;
+   
     @JoinColumn(name = "trips_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,optional = false, cascade = CascadeType.ALL)
     private Trips tripsId;
+   
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
@@ -160,6 +171,20 @@ public class Ticket implements Serializable {
     @Override
     public String toString() {
         return "com.nvnht.pojo.Ticket[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the sold
+     */
+    public short getSold() {
+        return sold;
+    }
+
+    /**
+     * @param sold the sold to set
+     */
+    public void setSold(short sold) {
+        this.sold = sold;
     }
     
 }

@@ -25,3 +25,9 @@ lấy nhà xe nào có id user = id user đang đăng nhập vào hệ thống. 
 
 +Thêm vị trí nhà xe:
 + lấy user đang đăng nhập -> find user by username(trả về đối tượng tiếp tục lấy id từ đối tượng user) -> lấy id user qua bảng buscompanies xem nhà xe nào có id user = id user.
+
+
+
+
+-Ticket:
+cho user_id được phép null, để khi nào user KH đặt vé, lấy id user KH vào import vào feild user_id cho bảng ticket.
