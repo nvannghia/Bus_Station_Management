@@ -6,6 +6,7 @@
 package com.nvnht.service;
 
 import com.nvnht.pojo.Ticket;
+import com.nvnht.pojo.User;
 import java.util.List;
 
 /**
@@ -14,4 +15,6 @@ import java.util.List;
  */
 public interface TicketService {
     List<Ticket> getTicketsByBusCompanyId(int busId);
+    Ticket getTicketById(int ticketId);
+    boolean ticketOrder(int ticketId, User user);
 }

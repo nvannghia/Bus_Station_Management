@@ -20,7 +20,7 @@
             <th scope="col">Tên Đường</th>
             <th scope="col">Tên Quận</th>
             <th scope="col">Tên Thành Phố</th>
-            <th scope="col">Sửa/Xóa</th>
+            <th scope="col">Sửa</th>
         </tr>
     </thead>
     <tbody>
@@ -39,14 +39,14 @@
                     >
                        <i class="fa-solid fa-pencil"></i>
                     </a>
-                    <a 
+<!--                    <a 
                         onclick=" return confirm('Việc xóa có thể sẽ ảnh hưởng đến các tuyến xe, bạn chắc chứ?')"
                         class="btn btn-danger" 
                         href="<c:url value="/location/delete/${locate.id}"/>"
                         title="Xóa"
                     >
                          <i class="fa-regular fa-trash-can"></i>
-                    </a>
+                    </a>-->
                 </td>
             </tr>
         </c:forEach>

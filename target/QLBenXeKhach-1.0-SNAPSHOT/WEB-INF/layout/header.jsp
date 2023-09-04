@@ -36,6 +36,15 @@
                         <a class="nav-link" href="<c:url value="/ticket/list"/>">Xem tất cả vé xe</a>
                     </li>
                 </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_CUSTOMER')">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="<c:url value="/customer/index"/>">Tất cả nhà xe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/routes/list"/>">Xem vé đã đặt</a>
+                    </li>
+                    
+                </sec:authorize>
                 <c:if  test="${pageContext.request.userPrincipal.name == null}">
                     <li class="nav-item me-auto">
                         <a class="nav-link text-danger" href="<c:url value="/login"/>">Đăng nhập</a>

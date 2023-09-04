@@ -172,6 +172,6 @@ public class Location implements Serializable {
     
     // for ticket get full address
     public String getFullAddress(){
-        return String.format("%s, %s, %S",this.streetName,this.getDistrictName(),this.cityName);
+        return String.format("%s, %s, %s",this.streetName,this.getDistrictName(),this.cityName);
     }
 }

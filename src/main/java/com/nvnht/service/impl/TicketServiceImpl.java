@@ -6,6 +6,7 @@
 package com.nvnht.service.impl;
 
 import com.nvnht.pojo.Ticket;
+import com.nvnht.pojo.User;
 import com.nvnht.repository.TicketRepository;
 import com.nvnht.service.TicketService;
 import java.util.List;
@@ -24,6 +25,16 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public List<Ticket> getTicketsByBusCompanyId(int busId) {
         return this.ticketRepo.getTicketsByBusCompanyId(busId);
+    }
+
+    @Override
+    public Ticket getTicketById(int ticketId) {
+        return this.ticketRepo.getTicketById(ticketId);
+    }
+
+    @Override
+    public boolean ticketOrder(int ticketId, User user) {
+        return this.ticketRepo.ticketOrder(ticketId, user);
     }
     
 }

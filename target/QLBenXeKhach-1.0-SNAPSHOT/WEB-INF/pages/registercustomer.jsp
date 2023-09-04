@@ -36,7 +36,6 @@
                                                 <div class="text-danger" >
                                                     Tên đăng nhập đã tồn tại!
                                                 </div>
-                                                <h1>${username}</h1>
                                             </c:if>
                                            
                                         </div>

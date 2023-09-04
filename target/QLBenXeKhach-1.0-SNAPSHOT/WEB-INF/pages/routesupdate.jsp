@@ -57,6 +57,9 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-map-location fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
+                                            <c:if test="${!errMsg.isEmpty()}">
+                                                <div class="text-danger">${errMsg}</div>
+                                            </c:if>
                                             <form:select class="form-select" path="destinationId" name="destinationId" id="destinationId">
                                                 <c:forEach items="${locationes}" var="locate">
                                                     <c:choose>

@@ -22,7 +22,7 @@
                 <th scope="col">Giá Vé</th>
                 <th scope="col">Điểm Xuất Phát</th>
                 <th scope="col">Điểm Đến</th>
-                <th scope="col">Sửa/Xóa</th>
+                <th scope="col">Sửa</th>
                 <th scope="col">Tạo Chuyến Xe</th>
             </tr>
         </thead>
@@ -52,13 +52,15 @@
                             >
                             <i class="fa-solid fa-pencil"></i>
                         </a>
-                        <a 
+<!--                        <a 
                             onclick=" return confirm('Việc xóa có thể sẽ ảnh hưởng đến các chuyến xe, bạn chắc chứ?')"
                             class="btn btn-danger" 
                             href="<c:url value="/routes/delete/${route.id}"/>"
-                            >
-                             <i class="fa-regular fa-trash-can"></i>
-                        </a>
+                            disabled="disabled"
+                        >
+                            <i class="fa-regular fa-trash-can"></i>
+
+                        </a>-->
                     </td>
                     <td>
                         <a 

@@ -59,11 +59,11 @@ public class RoutesController {
     }
 
     @ModelAttribute
-    public void commonAttr(Model model){
+    public void commonAttr(Model model) {
         Buscompanies busCompany = this.getLogged();
         model.addAttribute("locationes", this.locateServ.getLocationesByBusId(busCompany.getId()));
     }
-    
+
     @GetMapping("/add")
     public String add(Model model) {
         Routes route = new Routes();
@@ -76,8 +76,7 @@ public class RoutesController {
     public String add(@ModelAttribute(value = "route") @Valid Routes route,
             BindingResult rs,
             Model model) {
-        if(route.getDepartureId().getId() == route.getDestinationId().getId())
-        {
+        if (route.getDepartureId().getId() == route.getDestinationId().getId()) {
             model.addAttribute("errMsg", "Điểm xuất phát và điểm đến không được trùng nhau!");
             return "routesadd";
         }
@@ -90,28 +89,32 @@ public class RoutesController {
         }
         return "routesadd";
     }
-    
+
     @GetMapping("/update/{id}")
-    public String update(Model model, @PathVariable(value = "id") int id){
+    public String update(Model model, @PathVariable(value = "id") int id) {
         Routes route = this.routesServ.getRouteById(id);
-        
-        model.addAttribute("route",route);
+        model.addAttribute("route", route);
         return "routesupdate";
     }
-    
-    
+
     @PostMapping("/update")
-    public String update(@ModelAttribute(value = "route") Routes route){
-        if(this.routesServ.updateRoute(route)==true)
+    public String update(@ModelAttribute(value = "route") Routes route, Model model) {
+        if (route.getDepartureId().getId() == route.getDestinationId().getId()) {
+            model.addAttribute("errMsg", "Điểm xuất phát và điểm đến không được trùng nhau!");
+            return "routesupdate";
+        }
+        if (this.routesServ.updateRoute(route) == true) {
             return "redirect:/routes/list";
-        
+        }
+
         return "errors";
     }
-    
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable(value = "id") int id){
-        if(this.routesServ.deleteRoute(id) == true)
-            return "redirect:/routes/list";
-        return "errors";
-    }
+
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable(value = "id") int id) {
+//        if (this.routesServ.deleteRoute(id) == true) {
+//            return "redirect:/routes/list";
+//        }
+//        return "errors";
+//    }
 }

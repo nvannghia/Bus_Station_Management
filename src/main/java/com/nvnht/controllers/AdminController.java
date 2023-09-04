@@ -51,20 +51,18 @@ public class AdminController {
     }
 
     @PostMapping("/createBusCompanyAccount")
-    public String add(@ModelAttribute(value = "user") @Valid User u, BindingResult userErr,
+    public String add(@ModelAttribute(value = "user") @Valid User user, BindingResult userErr,
             @ModelAttribute(value = "buscompany") @Valid Buscompanies b, BindingResult busErr, Model model) {
 
-        if (!this.userDetailsService.getUsers(u.getUsername()).isEmpty()) { // kiểm tra không rỗng mới lấy dc index 0
-            User user = this.userDetailsService.getUsers(u.getUsername()).get(0);
-            if (user != null) // kiểm tra đã có username trùng không
-            {
-                String msgErr = "Tên đăng nhập đã tồn tại";
-                model.addAttribute("msgErr", msgErr);
+        if (!this.userDetailsService.getUsers(user.getUsername()).isEmpty()) {
+            User dUser = this.userDetailsService.getUsers(user.getUsername()).get(0);
+            if (dUser.getUsername().equalsIgnoreCase(user.getUsername()) == true) {
+                model.addAttribute("msgErr", "Tên đăng nhập đã tồn tại");
                 return "register";
             }
         }
         if (!userErr.hasErrors() && !busErr.hasErrors()) {
-            if (this.busService.addBusCompany(u, b) == true) {
+            if (this.busService.addBusCompany(user, b) == true) {
                 return "redirect:/";
             }
         }

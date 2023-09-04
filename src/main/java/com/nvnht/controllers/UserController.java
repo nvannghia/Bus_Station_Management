@@ -46,13 +46,9 @@ public class UserController {
             @ModelAttribute(value = "userDetail") @Valid UserDetail userDetail,
             BindingResult userDetailErr, Model model) {
         if (!this.userDetailsService.getUsers(user.getUsername()).isEmpty()) {
-            User userDuplicate = this.userDetailsService.getUsers(user.getUsername()).get(0);
-            if (userDuplicate != null) {
-                String msgErr = "Tên đăng nhập đã tồn tại";
-                
-
-                model.addAttribute("msgErr", msgErr);
-                model.addAttribute("username", userDuplicate.getUsername());
+            User dUser = this.userDetailsService.getUsers(user.getUsername()).get(0);
+            if (dUser.getUsername().equalsIgnoreCase(user.getUsername()) == true) {
+                model.addAttribute("msgErr", "Tên đăng nhập đã tồn tại");
                 return "registercustomer";
             }
         }

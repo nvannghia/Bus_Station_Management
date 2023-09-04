@@ -94,13 +94,13 @@ public class LocationController {
         return "addlocation";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id) {
-        if (this.locateServ.deleteLocation(id) == true) {
-            return "redirect:/location/list";
-        }
-        return "error";
-    }
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable("id") int id) {
+//        if (this.locateServ.deleteLocation(id) == true) {
+//            return "redirect:/location/list";
+//        }
+//        return "error";
+//    }
 
     @GetMapping("/update/{id}")
     public String update(Model model, @PathVariable("id") int id) {

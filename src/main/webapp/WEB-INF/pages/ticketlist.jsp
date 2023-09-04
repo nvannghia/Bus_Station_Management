@@ -25,6 +25,10 @@
                 <section class="card-cont text-info">
                     <h4>Giá vé: <fmt:formatNumber value="${tk.tripsId.routesId.fare}"/> vnđ</h4>
                     <div class="even-date">
+                        <i class="fa-solid fa-couch"></i>
+                        <h5>Ghế số: ${tk.seatNumber} </h5>
+                    </div>
+                    <div class="even-date">
                         <i class="fa fa-calendar"></i>
                         <time>
                             <span>Ngày khởi hành: ${tk.tripsId.departureDate}</span>
