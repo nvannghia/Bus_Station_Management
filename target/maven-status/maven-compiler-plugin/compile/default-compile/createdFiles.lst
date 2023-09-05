@@ -1,5 +1,6 @@
 com\nvnht\repository\impl\RoutesRepositoryImpl.class
 com\nvnht\pojo\UserDetail.class
+com\nvnht\controllers\CustomerController.class
 com\nvnht\repository\impl\LocationRepositoryImpl.class
 com\nvnht\formatter\RoutesFormatter.class
 com\nvnht\pojo\Trips.class
@@ -16,6 +17,7 @@ com\nvnht\formatter\UserFormatter.class
 com\nvnht\configs\WebAppContextConfig.class
 com\nvnht\pojo\Review_.class
 com\nvnht\repository\BusCompaniesRepository.class
+com\nvnht\repository\ReviewRepository.class
 com\nvnht\service\BusCompaniesService.class
 com\nvnht\controllers\ApiBusCompanies.class
 com\nvnht\controllers\LocationController.class
@@ -25,6 +27,7 @@ com\nvnht\service\impl\TripsServiceImpl.class
 com\nvnht\pojo\User.class
 com\nvnht\pojo\Avatar_.class
 com\nvnht\pojo\Trips_.class
+com\nvnht\repository\impl\ReviewRepositoryImpl.class
 com\nvnht\pojo\Location.class
 com\nvnht\controllers\RoutesController.class
 com\nvnht\pojo\User_.class
@@ -43,8 +46,10 @@ com\nvnht\service\impl\BusCompaniesServiceImpl.class
 com\nvnht\pojo\Buscompanies_.class
 com\nvnht\service\UserService.class
 com\nvnht\controllers\AdminController.class
+com\nvnht\service\ReviewService.class
 com\nvnht\pojo\Avatar.class
 com\nvnht\pojo\Deliveries_.class
+com\nvnht\service\impl\ReviewServiceImpl.class
 com\nvnht\repository\LocationRepository.class
 com\nvnht\controllers\SystemController.class
 com\nvnht\pojo\Routes_.class

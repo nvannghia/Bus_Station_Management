@@ -5,6 +5,8 @@
  */
 package com.nvnht.configs;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.User;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,10 +40,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "com.nvnht.repository",
     "com.nvnht.service"
 })
+@PropertySource("classpath:configs.properties")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private Environment env;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -83,6 +90,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SimpleDateFormat simpleDateFormat() {
         return new SimpleDateFormat("dd-MM-yyyy");
+    }
+    
+    @Bean
+    public Cloudinary cloudinary() {
+        Cloudinary cloudinary
+                = new Cloudinary(ObjectUtils.asMap(
+                        "cloud_name", this.env.getProperty("cloudinary.cloud_name"),
+                        "api_key", this.env.getProperty("cloudinary.api_id"),
+                        "api_secret", this.env.getProperty("cloudinary.api_secret"),
+                        "secure", true));
+        return cloudinary;
     }
 
 }

@@ -41,7 +41,7 @@
                         <a class="nav-link" href="<c:url value="/customer/index"/>">Tất cả nhà xe</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/routes/list"/>">Xem vé đã đặt</a>
+                        <a class="nav-link" href="<c:url value="/customer/ticket/booked"/>">Xem vé đã đặt</a>
                     </li>
                     
                 </sec:authorize>

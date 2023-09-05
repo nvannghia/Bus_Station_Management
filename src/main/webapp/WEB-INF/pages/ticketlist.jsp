@@ -64,7 +64,7 @@
                                <a href="#" class=" bg-danger"> Chưa bán </a>
                             </c:when>
                             <c:otherwise>
-                                <a href="#" class=" bg-success"> Đã bán </a>
+                                <a href="#" onclick="return false" class="disabled-link bg-success"> Đã bán </a>
                             </c:otherwise>
                         </c:choose>
                     

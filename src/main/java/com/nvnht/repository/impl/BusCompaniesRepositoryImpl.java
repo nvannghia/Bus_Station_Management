@@ -38,6 +38,7 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
         Query q = s.createQuery("FROM Buscompanies");
         return q.getResultList();
     }
+    
 
     @Override
     public Buscompanies getBusCompanyById(int id) {

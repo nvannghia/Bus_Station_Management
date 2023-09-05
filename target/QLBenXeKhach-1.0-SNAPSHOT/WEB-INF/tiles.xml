@@ -115,4 +115,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/pages/busdetail.jsp" />
     </definition>
+    
+    <definition name="ticketbooked" extends="baseLayout">
+        <put-attribute name="title" value="Các vé xe đã đặt" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/ticketbooked.jsp" />
+    </definition>
 </tiles-definitions>

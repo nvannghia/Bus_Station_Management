@@ -8,6 +8,7 @@ package com.nvnht.repository;
 import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.User;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,4 +20,5 @@ public interface BusCompaniesRepository {
     Buscompanies getBusCompanyByUserId(int userId);
     boolean update(int id);
     boolean addBusCompany(User u, Buscompanies b);
+   
 }

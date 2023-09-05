@@ -61,4 +61,12 @@ public class TicketRepositoryImpl implements TicketRepository {
         }
     }
 
+    @Override
+    public List<Ticket> getTicketsByUser(User user) {
+        Session s = this.F.getObject().getCurrentSession();
+        Query query = s.createQuery("FROM Ticket WHERE userId= :user")
+                        .setParameter("user", user);
+        return query.getResultList();
+    }
+
 }

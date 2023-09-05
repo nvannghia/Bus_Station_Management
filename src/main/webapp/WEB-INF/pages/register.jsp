@@ -20,8 +20,8 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Đăng ký tài khoản nhà xe</p>
 
                                 <c:url value="/createBusCompanyAccount" var="{action}" />
-                                <form class="mx-1 mx-md-4" method="post" action="${action}">
-                                    
+                                <form class="mx-1 mx-md-4" method="post" action="${action}" enctype="multipart/form-data">
+
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
@@ -99,6 +99,17 @@
                                             <label class="form-label" for="delivery">Giao hàng</label>
                                         </div>
                                     </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fa-regular fa-image fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <spring:bind path="buscompany.file" >
+                                                <input type="file"  id="file" name="file" class="form-control" />
+                                            </spring:bind>
+                                            <label class="form-label" for="file">Ảnh nhà xe</label>
+                                        </div>
+                                    </div>
+
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-question fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">

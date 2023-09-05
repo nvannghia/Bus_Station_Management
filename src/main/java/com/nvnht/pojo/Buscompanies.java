@@ -20,11 +20,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -72,12 +74,11 @@ public class Buscompanies implements Serializable {
     @NotNull
     @Column(name = "id_user")
     private int idUser;
-    
+
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Routes> routesSet;
-    
-    
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Ticket> ticketSet;
@@ -87,6 +88,14 @@ public class Buscompanies implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "buscompaniesId")
     private Set<Location> locationSet;
+
+    // them vao sau de up anh
+    @Size(max = 200)
+    @Column(name = "image")
+    private String image;
+    
+    @Transient
+    private MultipartFile file;
 
     public Buscompanies() {
     }
@@ -211,6 +220,34 @@ public class Buscompanies implements Serializable {
     @Override
     public String toString() {
         return "com.nvnht.pojo.Buscompanies[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
 }

@@ -64,6 +64,7 @@
                                                 <option value="45">45</option>
                                             </form:select>
                                             <label class="form-label" for="seatNumber">Số ghế</label>
+                                            <div class="h5 text-danger">*Hệ thống sẽ tự động tạo số vé xe bằng với số ghế - 1(ghế bác tài)</div>
                                         </div>
                                     </div>
 

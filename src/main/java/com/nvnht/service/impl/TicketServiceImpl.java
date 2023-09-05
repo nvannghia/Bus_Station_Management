@@ -36,5 +36,10 @@ public class TicketServiceImpl implements TicketService{
     public boolean ticketOrder(int ticketId, User user) {
         return this.ticketRepo.ticketOrder(ticketId, user);
     }
+
+    @Override
+    public List<Ticket> getTicketsByUser(User user) {
+        return this.ticketRepo.getTicketsByUser(user);
+    }
     
 }

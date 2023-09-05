@@ -17,4 +17,5 @@ public interface TicketService {
     List<Ticket> getTicketsByBusCompanyId(int busId);
     Ticket getTicketById(int ticketId);
     boolean ticketOrder(int ticketId, User user);
+    List<Ticket> getTicketsByUser(User user);
 }
