@@ -20,5 +20,7 @@ public interface BusCompaniesRepository {
     Buscompanies getBusCompanyByUserId(int userId);
     boolean update(int id);
     boolean addBusCompany(User u, Buscompanies b);
-   
+    List<Buscompanies> getBuscompaniesPaginate(Map<String,String> params);
+    int countBusCompanies();
+    
 }

@@ -9,10 +9,13 @@ import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.User;
 import com.nvnht.repository.BusCompaniesRepository;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -24,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
+@PropertySource("classpath:configs.properties")
 public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
 
     @Autowired
@@ -32,13 +36,15 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private Environment env;
+
     @Override
     public List<Buscompanies> getBusCompanies() {
         Session s = this.F.getObject().getCurrentSession();
         Query q = s.createQuery("FROM Buscompanies");
         return q.getResultList();
     }
-    
 
     @Override
     public Buscompanies getBusCompanyById(int id) {
@@ -95,8 +101,35 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
     public Buscompanies getBusCompanyByUserId(int userId) {
         Session s = this.F.getObject().getCurrentSession();
         Query query = s.createQuery("FROM Buscompanies WHERE idUser = :userId")
-                        .setParameter("userId", userId);
+                .setParameter("userId", userId);
         return (Buscompanies) query.getSingleResult();
-       
+
+    }
+
+    @Override
+    public List<Buscompanies> getBuscompaniesPaginate(Map<String, String> params) {
+        Session s = this.F.getObject().getCurrentSession();
+        Query query = s.createQuery("FROM Buscompanies");
+
+        if (params != null) {
+            String p = params.get("page");
+            if (p != null && !p.isEmpty()) {
+                int page = Integer.parseInt(p);
+                int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
+
+                query.setMaxResults(pageSize);
+                query.setFirstResult((page - 1) * pageSize);
+            }
+        }
+
+        return query.getResultList();
+    }
+
+    @Override
+    public int countBusCompanies() {
+        Session s = this.F.getObject().getCurrentSession(); 
+        Query query = s.createQuery("SELECT Count(*) From Buscompanies");
+        
+        return Integer.parseInt(query.getSingleResult().toString());
     }
 }

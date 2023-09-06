@@ -16,4 +16,5 @@ import java.util.List;
 public interface ReviewRepository {
     boolean addReview(Review review);
     List<Review> getReviewsByBusCompany(Buscompanies bus);
+    double getNumberStarByBus(Buscompanies bus);
 }

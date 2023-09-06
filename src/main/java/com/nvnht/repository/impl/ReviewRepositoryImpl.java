@@ -7,6 +7,7 @@ package com.nvnht.repository.impl;
 
 import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.Review;
+import com.nvnht.repository.BusCompaniesRepository;
 import com.nvnht.repository.ReviewRepository;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -44,6 +45,15 @@ public class ReviewRepositoryImpl implements ReviewRepository{
         Query query = s.createQuery("FROM Review WHERE buscompaniesId= :b")
                         .setParameter("b", b);
         return query.getResultList();
+    }
+
+    @Override
+    public double getNumberStarByBus(Buscompanies bus) {
+        Session s = this.F.getObject().getCurrentSession();
+        
+        Query query = s.createQuery("SELECT AVG(star) FROM Review WHERE buscompaniesId= :bus")
+                        .setParameter("bus", bus);
+       return Double.parseDouble(query.getSingleResult().toString());
     }
     
 }

@@ -31,5 +31,10 @@ public class ReviewServiceImpl implements ReviewService{
     public List<Review> getReviewsByBusCompany(Buscompanies b) {
         return this.reviewRepo.getReviewsByBusCompany(b);
     }
+
+    @Override
+    public double getNumberStarByBus(Buscompanies bus) {
+        return this.reviewRepo.getNumberStarByBus(bus);
+    }
     
 }

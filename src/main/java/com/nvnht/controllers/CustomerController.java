@@ -12,7 +12,10 @@ import com.nvnht.service.BusCompaniesService;
 import com.nvnht.service.ReviewService;
 import com.nvnht.service.TicketService;
 import com.nvnht.service.UserService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -30,6 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/customer")
+@PropertySource("classpath:configs.properties")
 public class CustomerController {
     @Autowired
     private BusCompaniesService busServ;
@@ -39,10 +44,16 @@ public class CustomerController {
     private UserService userServ;
     @Autowired
     private ReviewService reviewServ;
+    @Autowired
+    private Environment env;
     
     @RequestMapping("/index")
-    public String index(Model model){
-        model.addAttribute("buscompanies", this.busServ.getBusCompanies());
+    public String index(Model model, @RequestParam Map<String, String> params){
+        model.addAttribute("buscompanies", this.busServ.getBuscompaniesPaginate(params));
+        
+        int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
+        int count = this.busServ.countBusCompanies();
+        model.addAttribute("counter", Math.ceil(count*1.0/pageSize));
         return "customerindex";
     }
     
@@ -53,7 +64,10 @@ public class CustomerController {
         model.addAttribute("busDetail", bus);
         model.addAttribute("tickets", this.ticketServ.getTicketsByBusCompanyId(id));
         model.addAttribute("rating", this.reviewServ.getReviewsByBusCompany(bus));
-
+        
+//        //get star of per buscompany
+//        model.addAttribute("numberStar", this.reviewServ.getNumberStarByBus(bus));
+        
         //cho danh gia
         model.addAttribute("review", new Review());
         return "busdetail";

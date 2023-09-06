@@ -62,5 +62,15 @@ public class BusCompaniesServiceImpl implements BusCompaniesService{
     public Buscompanies getBusCompanyByUserId(int userId) {
         return this.busRepo.getBusCompanyByUserId(userId);
     }
+
+    @Override
+    public List<Buscompanies> getBuscompaniesPaginate(Map<String, String> params) {
+        return this.busRepo.getBuscompaniesPaginate(params);
+    }
+
+    @Override
+    public int countBusCompanies() {
+        return this.busRepo.countBusCompanies();
+    }
     
 }
