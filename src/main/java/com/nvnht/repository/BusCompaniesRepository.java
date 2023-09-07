@@ -15,12 +15,21 @@ import java.util.Map;
  * @author nghia
  */
 public interface BusCompaniesRepository {
+
     List<Buscompanies> getBusCompanies();
+
     Buscompanies getBusCompanyById(int id);
+
     Buscompanies getBusCompanyByUserId(int userId);
+
     boolean update(int id);
+
     boolean addBusCompany(User u, Buscompanies b);
-    List<Buscompanies> getBuscompaniesPaginate(Map<String,String> params);
+
+    List<Buscompanies> getBuscompaniesPaginate(Map<String, String> params);
+
     int countBusCompanies();
     
+    int statsRevenue(Buscompanies bus,String fd, String td);
+
 }

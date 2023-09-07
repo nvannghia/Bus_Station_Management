@@ -40,6 +40,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ticket.findByPayment", query = "SELECT t FROM Ticket t WHERE t.payment = :payment"),
     @NamedQuery(name = "Ticket.findByCreatedAt", query = "SELECT t FROM Ticket t WHERE t.createdAt = :createdAt")})
 public class Ticket implements Serializable {
+
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,6 +79,13 @@ public class Ticket implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
+    
+    
+    // them de thong ke
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fare")
+    private Integer fare;
 
     public Ticket() {
     }
@@ -92,6 +101,20 @@ public class Ticket implements Serializable {
         this.createdAt = createdAt;
     }
 
+    /**
+     * @return the fare
+     */
+    public Integer getFare() {
+        return fare;
+    }
+
+    /**
+     * @param fare the fare to set
+     */
+    public void setFare(Integer fare) {
+        this.fare = fare;
+    }
+    
     public Integer getId() {
         return id;
     }

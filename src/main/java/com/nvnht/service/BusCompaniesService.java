@@ -29,4 +29,6 @@ public interface BusCompaniesService {
     List<Buscompanies> getBuscompaniesPaginate(Map<String, String> params);
 
     int countBusCompanies();
+
+    int statsRevenue(Buscompanies bus, String fd, String td);
 }

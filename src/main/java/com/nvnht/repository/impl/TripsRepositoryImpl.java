@@ -75,6 +75,7 @@ public class TripsRepositoryImpl implements TripsRepository {
                         ticket.setTripsId(tripNew);
                         ticket.setUserId(null);
                         ticket.setSold(Short.valueOf("0"));
+                        ticket.setFare(this.routesServ.getRouteById(r.getId()).getFare());
                         s.save(ticket);
                     }
                 }
@@ -83,7 +84,7 @@ public class TripsRepositoryImpl implements TripsRepository {
         } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;
-        }
+        } 
     }
 
     @Override

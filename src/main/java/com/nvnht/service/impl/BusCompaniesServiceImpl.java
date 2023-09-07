@@ -72,5 +72,10 @@ public class BusCompaniesServiceImpl implements BusCompaniesService{
     public int countBusCompanies() {
         return this.busRepo.countBusCompanies();
     }
+
+    @Override
+    public int statsRevenue(Buscompanies bus, String fd, String td) {
+        return this.busRepo.statsRevenue(bus, fd, td);
+    }
     
 }

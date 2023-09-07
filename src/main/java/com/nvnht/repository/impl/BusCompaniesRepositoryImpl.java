@@ -8,8 +8,13 @@ package com.nvnht.repository.impl;
 import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.User;
 import com.nvnht.repository.BusCompaniesRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Query;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -38,6 +43,9 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
 
     @Autowired
     private Environment env;
+
+    @Autowired
+    private SimpleDateFormat SPF;
 
     @Override
     public List<Buscompanies> getBusCompanies() {
@@ -127,9 +135,33 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
 
     @Override
     public int countBusCompanies() {
-        Session s = this.F.getObject().getCurrentSession(); 
+        Session s = this.F.getObject().getCurrentSession();
         Query query = s.createQuery("SELECT Count(*) From Buscompanies");
-        
+
         return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public int statsRevenue(Buscompanies bus, String fd, String td) {
+        Session s = this.F.getObject().getCurrentSession();
+        
+        Query query0 = s.createQuery("FROM Ticket WHERE buscompaniesId= :bus AND  createdAt BETWEEN' "+fd+" ' AND ' "+td+" '");
+        query0.setParameter("bus", bus);
+        if(!query0.getResultList().isEmpty()){ // kiểm tra `fd` và `td` có trong createdAt cua ticket
+            Query query = s.createQuery("SELECT sum(fare) FROM Ticket WHERE buscompaniesId= :bus "
+                + "AND sold = 1 AND createdAt BETWEEN' "+fd+" ' AND ' "+td+" '");
+            query.setParameter("bus", bus);
+            return Integer.parseInt(query.getSingleResult().toString());
+        }
+        return 0;
+        
+        
+        
+//        Query query = s.createQuery("SELECT sum(fare) FROM Ticket WHERE buscompaniesId= :bus "
+//                + "AND sold = 1 AND createdAt BETWEEN' "+fd+" ' AND ' "+td+" '");
+//        query.setParameter("bus", bus);
+//        if((Integer)Integer.parseInt(query.getSingleResult().toString()) == null)
+//            return 0;
+//        return Integer.parseInt(query.getSingleResult().toString());
     }
 }

@@ -35,6 +35,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/ticket/list"/>">Xem tất cả vé xe</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/buscompany/statistical"/>">Xem thống kê</a>
+                    </li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_CUSTOMER')">
                     <li class="nav-item ">

@@ -31,6 +31,7 @@ com\nvnht\repository\impl\ReviewRepositoryImpl.class
 com\nvnht\pojo\Location.class
 com\nvnht\controllers\RoutesController.class
 com\nvnht\pojo\User_.class
+com\nvnht\controllers\BuscompanyController.class
 com\nvnht\service\LocationService.class
 com\nvnht\pojo\Routes.class
 com\nvnht\repository\impl\UserRepositoryImpl.class
