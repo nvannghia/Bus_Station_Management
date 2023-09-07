@@ -38,6 +38,7 @@ public class BuscompanyController {
         return "statisticalBus";
     }
 
+    
     @RequestMapping("/statistical/revenue")
     public String statisticalBus(Model model, @RequestParam("fd") String fd, @RequestParam("td") String td) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

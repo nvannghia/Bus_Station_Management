@@ -129,5 +129,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/pages/statisticalBus.jsp" />
     </definition>
     
+    <!--admin contact-->
+    <definition name="admincontact" extends="baseLayout">
+        <put-attribute name="title" value="Liên hệ admin" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/admincontact.jsp" />
+    </definition>
     
 </tiles-definitions>

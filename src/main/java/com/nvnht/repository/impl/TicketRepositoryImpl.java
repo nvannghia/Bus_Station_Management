@@ -10,6 +10,7 @@ import com.nvnht.pojo.User;
 import com.nvnht.repository.TicketRepository;
 import java.util.List;
 import javax.persistence.Query;
+import org.hibernate.CacheMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,15 @@ public class TicketRepositoryImpl implements TicketRepository {
         Query query = s.createQuery("FROM Ticket WHERE userId= :user")
                         .setParameter("user", user);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Ticket> getTicketsByCityName(String departureCity, String destinationCity) {
+         Session s = this.F.getObject().getCurrentSession();
+         Query query = s.createQuery("FROM Ticket WHERE tripsId.routesId.departureId.cityName = :departureCity AND tripsId.routesId.destinationId.cityName = :destinationCity");
+         query.setParameter("departureCity", departureCity);
+         query.setParameter("destinationCity", destinationCity);
+         return query.getResultList();
     }
 
 }

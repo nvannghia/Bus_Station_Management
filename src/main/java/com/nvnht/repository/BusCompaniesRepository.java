@@ -31,5 +31,7 @@ public interface BusCompaniesRepository {
     int countBusCompanies();
     
     int statsRevenue(Buscompanies bus,String fd, String td);
+    
+    Buscompanies getBusCompanyByName(String kw);
 
 }

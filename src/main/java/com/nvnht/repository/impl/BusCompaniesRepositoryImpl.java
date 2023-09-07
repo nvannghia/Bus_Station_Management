@@ -154,14 +154,12 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
             return Integer.parseInt(query.getSingleResult().toString());
         }
         return 0;
-        
-        
-        
-//        Query query = s.createQuery("SELECT sum(fare) FROM Ticket WHERE buscompaniesId= :bus "
-//                + "AND sold = 1 AND createdAt BETWEEN' "+fd+" ' AND ' "+td+" '");
-//        query.setParameter("bus", bus);
-//        if((Integer)Integer.parseInt(query.getSingleResult().toString()) == null)
-//            return 0;
-//        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public Buscompanies getBusCompanyByName(String kw) {
+        Session s = this.F.getObject().getCurrentSession();
+        Query query = s.createQuery("FROM Buscompanies WHERE name = :kw").setParameter("kw", kw);
+        return (Buscompanies) query.getResultList().stream().findFirst().orElse(null);
     }
 }

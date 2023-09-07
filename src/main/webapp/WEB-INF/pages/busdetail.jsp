@@ -22,7 +22,15 @@
                 class="object-fit-cover  border rounded"
                 >
             <div class="w3-container w3-center mt-2">
-                <p class="h2 text-secondary font-weight-bold">Nhà xe ${busDetail.name} </p>
+                <p class="h2 text-secondary font-weight-bold">Nhà xe ${busDetail.name} -
+                    <c:choose>
+                        <c:when test="${numberStar != 0}">
+                               ${numberStar} <i class="fa-solid fa-star" style="color:yellow"></i>
+                        </c:when>
+                        <c:otherwise>
+                                Chưa có <i class="fa-solid fa-star" style="color:yellow"></i>
+                        </c:otherwise>
+                    </c:choose> </p>
                 <p class="h2 text-white bg-secondary">Đường dây nóng: ${busDetail.phoneNumber}</p>
             </div>
         </div>
@@ -43,7 +51,7 @@
                     <section class="date ">
                         <time datetime="23th feb">
                             <span><i class="fa-solid fa-bus"></i></span>
-                            <span class="text-info">${busName}</span>
+                            <span class="text-info">${tk.buscompaniesId.name}</span>
                         </time>
                     </section>
                     <section class="card-cont text-info">
@@ -105,13 +113,13 @@
             <form:input path="content" type="text" name="content" placeholder="+ Thêm bình luận" class="form-control addtxt" /> 
         </div>
         <div class="d-flex justify-content-center mb-3 "> 
-           <form:input value="Số sao" path="star" min="1" max="5" type="number" name="star" placeholder="Số sao?" class="form-control addtxt" /> 
+            <form:input value="Số sao" path="star" min="1" max="5" type="number" name="star" placeholder="Số sao?" class="form-control addtxt" /> 
         </div>
         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
             <button type="submit" class="btn btn-primary btn-lg">Bình luận</button>
         </div>
     </form:form>
-    
+
     <!--display comment-->
     <c:if test="${rating.isEmpty()}">
         <h1 class="text-danger"> Chưa có bình luận nào ! </h1>

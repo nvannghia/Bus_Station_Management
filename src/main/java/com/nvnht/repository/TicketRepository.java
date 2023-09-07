@@ -18,4 +18,5 @@ public interface TicketRepository {
     Ticket getTicketById(int ticketId);
     boolean ticketOrder(int ticketId, User user);
     List<Ticket> getTicketsByUser(User user);
+    List<Ticket> getTicketsByCityName(String departureCity, String destinationCity);
 }

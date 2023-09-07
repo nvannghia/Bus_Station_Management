@@ -46,7 +46,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/customer/ticket/booked"/>">Xem vé đã đặt</a>
                     </li>
-                    
+                    <c:url value="/customer/index" var="action"/>
+                    <form class="d-flex" action="${action}">
+                        <input class="form-control me-2" name="kw" type="text" placeholder="Nhập tên nhà xe...">
+                        <button class="btn btn-primary" type="submit">Tìm</button>
+                    </form>
                 </sec:authorize>
                 <c:if  test="${pageContext.request.userPrincipal.name == null}">
                     <li class="nav-item me-auto">

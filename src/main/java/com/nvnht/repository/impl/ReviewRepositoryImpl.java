@@ -10,6 +10,7 @@ import com.nvnht.pojo.Review;
 import com.nvnht.repository.BusCompaniesRepository;
 import com.nvnht.repository.ReviewRepository;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -48,12 +49,13 @@ public class ReviewRepositoryImpl implements ReviewRepository{
     }
 
     @Override
-    public double getNumberStarByBus(Buscompanies bus) {
+    public Double getNumberStarByBus(Buscompanies bus) {
         Session s = this.F.getObject().getCurrentSession();
         
         Query query = s.createQuery("SELECT AVG(star) FROM Review WHERE buscompaniesId= :bus")
                         .setParameter("bus", bus);
-       return Double.parseDouble(query.getSingleResult().toString());
+        Number result = (Number) query.getSingleResult();
+        return Optional.ofNullable(result).orElse(0).doubleValue();
     }
     
 }

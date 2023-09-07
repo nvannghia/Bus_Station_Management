@@ -13,6 +13,7 @@
 </c:if>
 
 <section class="container overflow-auto " style="background-color: #dadde6">
+    
     <c:forEach var="tk" items="${tickets}">
         <div class="">
             <article class="card fl-left mt-4">
