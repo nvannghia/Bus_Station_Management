@@ -9,6 +9,7 @@ import com.nvnht.pojo.Buscompanies;
 import com.nvnht.pojo.User;
 import com.nvnht.service.BusCompaniesService;
 import com.nvnht.service.UserService;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,12 @@ public class AdminController {
     }
 
     @GetMapping("/createBusCompanyAccount")
-    public String addBusCompany(ModelMap model) {
+    public String addBusCompany(ModelMap model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("msgActive", "Đang hoạt động");
+        } else {
+            model.addAttribute("msgActive", "Chưa hoạt động(Đợi hệ thống xác nhận)");
+        }
         User user = new User();
         user.setUsername(null);
         user.setPassword(null);
@@ -52,7 +58,8 @@ public class AdminController {
 
     @PostMapping("/createBusCompanyAccount")
     public String add(@ModelAttribute(value = "user") @Valid User user, BindingResult userErr,
-            @ModelAttribute(value = "buscompany") @Valid Buscompanies b, BindingResult busErr, Model model) {
+            @ModelAttribute(value = "buscompany") @Valid Buscompanies b, BindingResult busErr,
+            Model model, HttpServletRequest request) {
 
         if (!this.userDetailsService.getUsers(user.getUsername()).isEmpty()) {
             User dUser = this.userDetailsService.getUsers(user.getUsername()).get(0);
@@ -62,6 +69,11 @@ public class AdminController {
             }
         }
         if (!userErr.hasErrors() && !busErr.hasErrors()) {
+            if (request.isUserInRole("ROLE_ADMIN")) {
+                    b.setActive(Short.valueOf("1"));
+                } else {
+                    b.setActive(Short.valueOf("0"));
+                }
             if (this.busService.addBusCompany(user, b) == true) {
                 return "redirect:/";
             }

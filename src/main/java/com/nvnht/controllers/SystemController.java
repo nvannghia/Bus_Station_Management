@@ -10,6 +10,8 @@ import com.nvnht.pojo.User;
 import com.nvnht.pojo.UserDetail;
 import com.nvnht.service.BusCompaniesService;
 import com.nvnht.service.UserService;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,15 +29,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SystemController {
     
-    
-    
     @RequestMapping("/who")
-    public String who(){
-        return "who";
+    public String who(HttpServletRequest request){
+        if(request.isUserInRole("ROLE_ADMIN"))
+            return "redirect:/";
+        else if(request.isUserInRole("ROLE_BUSCOMPANY"))
+            return "redirect:/location/list";
+        else
+            return "redirect:/customer/index";
     }
     
-    
-    
+   
     
    
 }

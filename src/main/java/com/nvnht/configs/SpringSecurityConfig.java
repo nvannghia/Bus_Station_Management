@@ -68,7 +68,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password");
 
-        http.formLogin().defaultSuccessUrl("/")
+        http.formLogin().defaultSuccessUrl("/who")
                 .failureUrl("/login?error");
 
         http.logout().logoutSuccessUrl("/login");
@@ -76,12 +76,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/login?accessDenied");
 
         http.authorizeRequests().antMatchers("/").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/createBusCompanyAccount").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/createBusCompanyAccount").permitAll()
                 .antMatchers("/api/buscompanies").permitAll()
                 .antMatchers("/location/**").access("hasRole('ROLE_BUSCOMPANY')")
                 .antMatchers("/routes/**").access("hasRole('ROLE_BUSCOMPANY')")
                 .antMatchers("/trips/**").access("hasRole('ROLE_BUSCOMPANY')")
                 .antMatchers("/ticket/**").access("hasRole('ROLE_BUSCOMPANY')")
+                .antMatchers("/buscompany/statistical").access("hasRole('ROLE_BUSCOMPANY')")
                 .antMatchers("/customer/**").access("hasRole('ROLE_CUSTOMER')");
         //                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
         http.csrf().disable();

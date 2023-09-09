@@ -15,7 +15,7 @@
                 <section class="date ">
                     <time datetime="23th feb">
                         <span><i class="fa-solid fa-bus"></i></span>
-                        <span class="text-info">${busName}</span>
+                        <span class="text-info">${tk.buscompaniesId.name}</span>
                     </time>
                 </section>
                 <section class="card-cont text-info">

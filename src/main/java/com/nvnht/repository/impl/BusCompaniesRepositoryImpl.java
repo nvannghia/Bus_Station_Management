@@ -90,7 +90,7 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
                 u.setUserRole("ROLE_BUSCOMPANY");
                 int id = (Integer) s.save(u);
                 if (id != -1) {
-                    b.setActive(Short.valueOf("1"));
+//                    b.setActive(Short.valueOf("1"));
                     b.setIdUser(id);
                     s.save(b);
                     return true;
@@ -117,7 +117,7 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
     @Override
     public List<Buscompanies> getBuscompaniesPaginate(Map<String, String> params) {
         Session s = this.F.getObject().getCurrentSession();
-        Query query = s.createQuery("FROM Buscompanies");
+        Query query = s.createQuery("FROM Buscompanies WHERE active = 1");
 
         if (params != null) {
             String p = params.get("page");
@@ -159,7 +159,7 @@ public class BusCompaniesRepositoryImpl implements BusCompaniesRepository {
     @Override
     public Buscompanies getBusCompanyByName(String kw) {
         Session s = this.F.getObject().getCurrentSession();
-        Query query = s.createQuery("FROM Buscompanies WHERE name = :kw").setParameter("kw", kw);
+        Query query = s.createQuery("FROM Buscompanies WHERE name = :kw AND active = 1").setParameter("kw", kw);
         return (Buscompanies) query.getResultList().stream().findFirst().orElse(null);
     }
 }

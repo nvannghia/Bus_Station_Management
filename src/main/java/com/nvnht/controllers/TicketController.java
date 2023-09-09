@@ -37,6 +37,11 @@ public class TicketController {
         String username = auth.getName(); // get username of current user logged
         User u = this.userServ.findUserByUsername(username);
         Buscompanies busCompany = this.busServ.getBusCompanyByUserId(u.getId());
+        //validate lock
+        if(busCompany.getActive() == 0){
+            return "admincontact";
+        }
+        
         String busName = busCompany.getName();
         model.addAttribute("tickets",this.tickerServ.getTicketsByBusCompanyId(busCompany.getId()));
         model.addAttribute("busName", busName);

@@ -54,6 +54,9 @@ public class RoutesController {
     @RequestMapping("/list")
     public String list(Model model) {
         Buscompanies busCompany = this.getLogged();
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
         model.addAttribute("routes", this.routesServ.getRoutesByBusId(busCompany.getId()));
         return "routeslist";
     }
@@ -66,6 +69,10 @@ public class RoutesController {
 
     @GetMapping("/add")
     public String add(Model model) {
+        Buscompanies busCompany = this.getLogged();
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
         Routes route = new Routes();
         route.setFare(null); // mục đích là để nó k hiện props mặc định = 0 trong ô input bên form
         model.addAttribute("route", route);
@@ -76,12 +83,17 @@ public class RoutesController {
     public String add(@ModelAttribute(value = "route") @Valid Routes route,
             BindingResult rs,
             Model model) {
+        //validate lock
+        Buscompanies busCompany = this.getLogged();
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
+        
         if (route.getDepartureId().getId() == route.getDestinationId().getId()) {
             model.addAttribute("errMsg", "Điểm xuất phát và điểm đến không được trùng nhau!");
             return "routesadd";
         }
         if (!rs.hasErrors()) {
-            Buscompanies busCompany = this.getLogged();
             route.setBuscompaniesId(busCompany);
             if (this.routesServ.addRoute(route) == true) {
                 return "redirect:/routes/list";
@@ -92,6 +104,13 @@ public class RoutesController {
 
     @GetMapping("/update/{id}")
     public String update(Model model, @PathVariable(value = "id") int id) {
+        
+        //validate lock
+        Buscompanies busCompany = this.getLogged();
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
+        
         Routes route = this.routesServ.getRouteById(id);
         model.addAttribute("route", route);
         return "routesupdate";
@@ -99,6 +118,12 @@ public class RoutesController {
 
     @PostMapping("/update")
     public String update(@ModelAttribute(value = "route") Routes route, Model model) {
+        //validate lock
+        Buscompanies busCompany = this.getLogged();
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
+        
         if (route.getDepartureId().getId() == route.getDestinationId().getId()) {
             model.addAttribute("errMsg", "Điểm xuất phát và điểm đến không được trùng nhau!");
             return "routesupdate";

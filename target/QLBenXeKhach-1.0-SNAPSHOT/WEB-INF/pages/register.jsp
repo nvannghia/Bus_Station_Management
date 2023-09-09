@@ -8,6 +8,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <section id="register" class="vh-100 overflow-auto" style="background-color: #F1F1F1;">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -109,12 +110,11 @@
                                             <label class="form-label" for="file">Ảnh nhà xe</label>
                                         </div>
                                     </div>
-
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-solid fa-question fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <spring:bind path="buscompany.active" >
-                                                <input type="text"  id="active" name="active" class="form-control" value="Đang hoạt động" disabled />
+                                                <input type="text"  id="active" name="active" class="form-control" value="${msgActive}" disabled />
                                             </spring:bind>
                                             <label class="form-label" for="active">Tình trạng</label>
                                         </div>

@@ -47,9 +47,27 @@ public class TripsController {
     private TripsService tripsServ;
     @Autowired
     private SimpleDateFormat SPF;
+    @Autowired
+    private UserService userServ;
+    @Autowired
+    private BusCompaniesService busServ;
+
+    public Buscompanies getLogged() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); // get username of current user logged
+        User u = this.userServ.findUserByUsername(username);
+        Buscompanies busCompany = this.busServ.getBusCompanyByUserId(u.getId());
+        return busCompany;
+    }
 
     @GetMapping("/add/{routeId}") // tạo chuyến xe cho tuyến xe có id = routeId 
     public String add(Model model, @PathVariable(value = "routeId") int id) {
+        //validate lock
+        Buscompanies busCompany = this.getLogged();
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
+        
         Routes route = this.routesServ.getRouteById(id);
         Trips trip = new Trips();
         trip.setSeatNumber(null);// mất giá trị default = 0 trong ô input
@@ -63,15 +81,22 @@ public class TripsController {
     public String add(@ModelAttribute(value = "trip") @Valid Trips trip,
             BindingResult rs,
             Model model) {
+        //validate lock
+        Buscompanies busCompany = this.getLogged();
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
+        
         if (!rs.hasErrors()) {
             if (this.tripsServ.addTrip(trip) == true) {
                 return "redirect:/ticket/list";
-            }else
+            } else {
                 return "error";
+            }
         }
-        
-      model.addAttribute("msgErr","Vui lòng nhập đúng các ô nhập liệu!");
-      model.addAttribute("route",this.routesServ.getRouteById(trip.getRoutesId().getId())); // đổ dữ liệu ngược lại cho view
-      return "tripsadd";
+
+        model.addAttribute("msgErr", "Vui lòng nhập đúng các ô nhập liệu!");
+        model.addAttribute("route", this.routesServ.getRouteById(trip.getRoutesId().getId())); // đổ dữ liệu ngược lại cho view
+        return "tripsadd";
     }
 }

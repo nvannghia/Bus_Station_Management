@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,22 +34,35 @@ public class BuscompanyController {
     @Autowired
     private SimpleDateFormat SPF;
 
-    @RequestMapping("/statistical")
-    public String statisticalBus(Model model) {
-        return "statisticalBus";
-    }
-
-    
-    @RequestMapping("/statistical/revenue")
-    public String statisticalBus(Model model, @RequestParam("fd") String fd, @RequestParam("td") String td) {
+    public Buscompanies getLogged() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); // get username of current user logged
         User u = this.userServ.findUserByUsername(username);
-        Buscompanies bus = this.busServ.getBusCompanyByUserId(u.getId());
-        
+        Buscompanies busCompany = this.busServ.getBusCompanyByUserId(u.getId());
+        return busCompany;
+    }
+
+    @RequestMapping("/statistical")
+    public String statisticalBus(Model model) {
+        Buscompanies busCompany = this.getLogged();
+        //validate lock
+        if (busCompany.getActive() == 0) {
+            return "admincontact";
+        }
+        return "statisticalBus";
+    }
+
+    @RequestMapping("/statistical/revenue")
+    public String statisticalBus(Model model, @RequestParam("fd") String fd, @RequestParam("td") String td) {
+        Buscompanies bus = this.getLogged();
+        //validate lock
+        if (bus.getActive() == 0) {
+            return "admincontact";
+        }
+
         model.addAttribute("fd", fd);
         model.addAttribute("td", td);
-        
+
         if (this.busServ.statsRevenue(bus, fd, td) != 0) {
             model.addAttribute("sum", this.busServ.statsRevenue(bus, fd, td));
         } else {
@@ -56,6 +70,6 @@ public class BuscompanyController {
         }
 
         return "statisticalBus";
-
     }
+    
 }
