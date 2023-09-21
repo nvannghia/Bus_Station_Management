@@ -53,7 +53,7 @@
                     <c:url value="/customer/index" var="action"/>
                     <form class="d-flex" action="${action}">
                         <input class="form-control me-2" name="kw" type="text" placeholder="Nhập tên nhà xe...">
-                        <button class="btn btn-primary" type="submit">Tìm</button>
+                        <button class="btn btn-danger" type="submit">Tìm</button>
                     </form>
                 </sec:authorize>
                 <c:if  test="${pageContext.request.userPrincipal.name == null}">
